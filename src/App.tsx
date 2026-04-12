@@ -20,7 +20,7 @@ import {
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import HowItWorks from './components/HowItWorks';
-import ProductCatalog from './components/ProductCatalog';
+import OperationTypes from './components/OperationTypes';
 import Simulator from './components/Simulator';
 import CustomOrder from './components/CustomOrder';
 import CommercialTerms from './components/CommercialTerms';
@@ -32,6 +32,9 @@ import Testimonials from './components/Testimonials';
 import CompanyHistory from './components/CompanyHistory';
 import Footer from './components/Footer';
 import LiveActivity from './components/LiveActivity';
+import SuccessCases from './components/SuccessCases';
+import SystemStatus from './components/SystemStatus';
+import ClientEducation from './components/ClientEducation';
 
 export default function App() {
   return (
@@ -39,9 +42,12 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
+        <SystemStatus />
         <GlobalLogistics />
         <HowItWorks />
-        <ProductCatalog />
+        <OperationTypes />
+        <SuccessCases />
+        <ClientEducation />
         <Simulator />
         <MarketComparator />
         <Financing />

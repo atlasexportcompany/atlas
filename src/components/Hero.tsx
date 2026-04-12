@@ -25,7 +25,7 @@ export default function Hero() {
           <div className="absolute top-2/4 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-indigo-500 to-transparent opacity-30"></div>
           <div className="absolute top-3/4 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-rose-500 to-transparent opacity-30"></div>
           
-          {/* Animated "ships/planes" dots */}
+          {/* Animated ships/planes dots */}
           <motion.div 
             animate={{ x: ['-10vw', '110vw'] }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -63,7 +63,7 @@ export default function Hero() {
             className="inline-flex items-center px-4 py-2 rounded-full bg-rose-500/10 text-rose-400 text-sm font-bold mb-8 border border-rose-500/30 animate-pulse"
           >
             <AlertCircle className="w-4 h-4 mr-2" />
-            Últimos fardos disponibles - Contenedor por cerrar
+            Operaciones activas en Asia y Norteamérica
           </motion.div>
           
           <motion.h1 
@@ -72,9 +72,9 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight mb-8 leading-tight"
           >
-            Acceso a productos en <br className="hidden md:block" />
+            Tu infraestructura de <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-indigo-500">
-              cualquier parte del mundo
+              importación global
             </span>
           </motion.h1>
           
@@ -84,7 +84,7 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed"
           >
-            Importamos por vos. Sin complicaciones. Gestionamos la logística, los impuestos y te entregamos una cotización completa. Tú solo te enfocas en vender.
+            Gestionamos toda la cadena de suministro internacional. Sourcing, aduanas, logística y entrega final. Escala tu negocio con un socio operativo confiable.
           </motion.p>
           
           <motion.div 
@@ -94,10 +94,10 @@ export default function Hero() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
           >
             <a 
-              href="#catalog"
+              href="#custom-order"
               className="w-full sm:w-auto px-8 py-4 bg-rose-600 text-white rounded-full font-bold text-lg hover:bg-rose-700 transition-colors shadow-lg shadow-rose-600/20 flex items-center justify-center group"
             >
-              Cotizar en 30 segundos
+              Iniciar Operación
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
             <a 
@@ -106,7 +106,7 @@ export default function Hero() {
               rel="noopener noreferrer"
               className="w-full sm:w-auto px-8 py-4 bg-slate-900 text-white border border-slate-700 rounded-full font-bold text-lg hover:bg-slate-800 transition-colors flex items-center justify-center"
             >
-              Contactar
+              Contactar Asesor
             </a>
           </motion.div>
 

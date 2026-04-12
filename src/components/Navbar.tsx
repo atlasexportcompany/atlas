@@ -5,8 +5,9 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Textiles', href: '#catalog' },
-    { name: 'Tecnología', href: '#catalog' },
+    { name: 'Operaciones', href: '#operations' },
+    { name: 'Casos Reales', href: '#cases' },
+    { name: 'Educación', href: '#education' },
     { name: 'Pedidos Personalizados', href: '#custom-order' },
   ];
 
@@ -45,7 +46,7 @@ export default function Navbar() {
               <input
                 type="text"
                 className="block w-full pl-10 pr-3 py-2.5 border border-slate-700 rounded-full leading-5 bg-slate-900 text-slate-300 placeholder-slate-500 focus:outline-none focus:bg-slate-800 focus:border-rose-500 focus:ring-1 focus:ring-rose-500 transition-all sm:text-sm"
-                placeholder="Buscar productos, categorías, marcas..."
+                placeholder="Buscar operaciones, servicios, destinos..."
               />
             </div>
           </div>
@@ -95,7 +96,7 @@ export default function Navbar() {
               <input
                 type="text"
                 className="block w-full pl-10 pr-3 py-2 border border-slate-700 rounded-lg bg-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-rose-500"
-                placeholder="Buscar productos..."
+                placeholder="Buscar operaciones..."
               />
             </div>
             <div className="space-y-1">
