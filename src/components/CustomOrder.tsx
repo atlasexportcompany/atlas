@@ -18,10 +18,10 @@ export default function CustomOrder() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight"
           >
-            ¿No encontrás lo que buscás?
+            ¿Buscás un producto específico?
           </motion.h2>
           <p className="text-xl text-slate-400">
-            Nuestro equipo de sourcing global puede conseguir cualquier producto que necesites para tu negocio.
+            Nuestro equipo de sourcing global localiza, negocia y gestiona la importación de cualquier producto mayorista.
           </p>
         </div>
 
@@ -38,44 +38,23 @@ export default function CustomOrder() {
               <form className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Producto Específico</label>
-                    <input type="text" placeholder="Ej: Laptops Dell Latitude i7" className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all" />
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Producto</label>
+                    <input required type="text" placeholder="Ej: Maquinaria industrial, Laptops..." className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Cantidad Requerida</label>
-                    <input type="text" placeholder="Ej: 50 unidades / 1 contenedor" className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all" />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Precio Objetivo (USD)</label>
-                    <input type="number" placeholder="Presupuesto por unidad" className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Fecha Estimada de Compra</label>
-                    <select className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all">
-                      <option>Lo antes posible</option>
-                      <option>En 1-2 meses</option>
-                      <option>En 3-6 meses</option>
-                      <option>Solo cotizando</option>
-                    </select>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Cantidad</label>
+                    <input required type="text" placeholder="Ej: 50 unidades / 1 contenedor" className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all" />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">País de Origen (Opcional)</label>
-                    <select className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all">
-                      <option>Cualquiera (Mejor precio)</option>
-                      <option>China</option>
-                      <option>Estados Unidos</option>
-                      <option>Europa</option>
-                    </select>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Presupuesto Estimado (USD)</label>
+                    <input required type="number" min="5000" placeholder="Mínimo $5,000" className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-slate-300 mb-2">País Destino</label>
-                    <input type="text" placeholder="Ej: México, Colombia, España" className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all" />
+                    <input required type="text" placeholder="Ej: México, Colombia, España" className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all" />
                   </div>
                 </div>
 
@@ -85,7 +64,7 @@ export default function CustomOrder() {
                 </div>
 
                 <button type="button" className="w-full py-4 bg-rose-600 text-white rounded-xl font-bold text-lg hover:bg-rose-700 transition-colors shadow-lg shadow-rose-600/20 flex items-center justify-center group">
-                  PEDIR PRODUCTO
+                  SOLICITAR COTIZACIÓN
                   <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </button>
               </form>

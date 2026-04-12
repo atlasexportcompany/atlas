@@ -13,7 +13,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-sm max-w-sm mb-4">
-              Plataforma global de sourcing e importación bajo demanda. Simplificamos el comercio internacional para que tú te enfoques en vender.
+              Plataforma global de sourcing e importación mayorista. Operaciones seguras, verificadas y de alto volumen para inversores y empresas.
             </p>
             <p className="text-xs text-slate-500">
               Negocio registrado y operando bajo las normativas de comercio internacional vigentes.
@@ -23,9 +23,10 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4">Enlaces</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#catalog" className="hover:text-rose-400 transition-colors">Catálogo de Productos</a></li>
-              <li><a href="#simulator" className="hover:text-rose-400 transition-colors">Simulador de Importación</a></li>
-              <li><a href="#custom-order" className="hover:text-rose-400 transition-colors">Pedido Personalizado</a></li>
+              <li><a href="#strategic-products" className="hover:text-rose-400 transition-colors">Oportunidades de Inversión</a></li>
+              <li><a href="#simulator" className="hover:text-rose-400 transition-colors">Calculadora Universal</a></li>
+              <li><a href="#financing" className="hover:text-rose-400 transition-colors">Línea de Crédito</a></li>
+              <li><a href="#custom-order" className="hover:text-rose-400 transition-colors">Sourcing a Medida</a></li>
             </ul>
           </div>
           

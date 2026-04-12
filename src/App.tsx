@@ -35,6 +35,7 @@ import LiveActivity from './components/LiveActivity';
 import SuccessCases from './components/SuccessCases';
 import SystemStatus from './components/SystemStatus';
 import ClientEducation from './components/ClientEducation';
+import StrategicProducts from './components/StrategicProducts';
 
 export default function App() {
   return (
@@ -44,6 +45,7 @@ export default function App() {
         <Hero />
         <SystemStatus />
         <GlobalLogistics />
+        <StrategicProducts />
         <HowItWorks />
         <OperationTypes />
         <SuccessCases />

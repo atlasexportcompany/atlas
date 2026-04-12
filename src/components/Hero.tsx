@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowRight, Globe, Users, AlertCircle } from 'lucide-react';
+import { ArrowRight, Globe, Users, AlertCircle, ShieldCheck } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export default function Hero() {
@@ -63,7 +63,7 @@ export default function Hero() {
             className="inline-flex items-center px-4 py-2 rounded-full bg-rose-500/10 text-rose-400 text-sm font-bold mb-8 border border-rose-500/30 animate-pulse"
           >
             <AlertCircle className="w-4 h-4 mr-2" />
-            Operaciones activas en Asia y Norteamérica
+            Operaciones mayoristas desde 5,000 USD
           </motion.div>
           
           <motion.h1 
@@ -72,9 +72,9 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight mb-8 leading-tight"
           >
-            Tu infraestructura de <br className="hidden md:block" />
+            Acceso a productos globales <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-indigo-500">
-              importación global
+              Importación sin complicaciones
             </span>
           </motion.h1>
           
@@ -84,7 +84,7 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed"
           >
-            Gestionamos toda la cadena de suministro internacional. Sourcing, aduanas, logística y entrega final. Escala tu negocio con un socio operativo confiable.
+            Gestionamos toda la cadena de suministro internacional para inversores y empresas. Sourcing, aduanas, logística y entrega final. Escala tu negocio con un socio operativo confiable.
           </motion.p>
           
           <motion.div 
@@ -94,10 +94,10 @@ export default function Hero() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
           >
             <a 
-              href="#custom-order"
+              href="#strategic-products"
               className="w-full sm:w-auto px-8 py-4 bg-rose-600 text-white rounded-full font-bold text-lg hover:bg-rose-700 transition-colors shadow-lg shadow-rose-600/20 flex items-center justify-center group"
             >
-              Iniciar Operación
+              Ver Oportunidades
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
             <a 
@@ -114,7 +114,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.6 }}
-            className="flex items-center justify-center text-slate-400 text-sm"
+            className="flex flex-wrap items-center justify-center gap-4 text-slate-400 text-sm"
           >
             <div className="flex items-center bg-slate-900/80 backdrop-blur-sm px-5 py-3 rounded-full border border-slate-800 shadow-xl">
               <Users className="w-5 h-5 text-rose-500 mr-3" />
@@ -125,6 +125,11 @@ export default function Hero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
               </span>
+            </div>
+            <div className="flex items-center bg-slate-900/80 backdrop-blur-sm px-5 py-3 rounded-full border border-slate-800 shadow-xl">
+              <ShieldCheck className="w-5 h-5 text-indigo-500 mr-3" />
+              <span className="font-bold text-white mr-2">Inversión Mínima:</span> 
+              <span>$5,000 USD</span>
             </div>
           </motion.div>
         </div>

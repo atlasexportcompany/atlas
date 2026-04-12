@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { CreditCard, CheckCircle2, Loader2, ShieldCheck } from 'lucide-react';
+import { CreditCard, CheckCircle2, Loader2, ShieldCheck, ArrowRight } from 'lucide-react';
 
 export default function Financing() {
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'analyzing' | 'validating' | 'evaluating' | 'approved'>('idle');
@@ -11,10 +11,9 @@ export default function Financing() {
     setFormState('submitting');
     setProgress(0);
 
-    // Simulate a thorough 3-minute analysis (accelerated slightly for UX, but feels long and professional)
-    // 180 seconds total. We'll update progress every second.
-    const totalTime = 180000; 
-    const intervalTime = 1000;
+    // Simulate a thorough 5-7 minute analysis (accelerated for demo purposes to 10 seconds)
+    const totalTime = 10000; 
+    const intervalTime = 100;
     const steps = totalTime / intervalTime;
     let currentStep = 0;
 
@@ -38,9 +37,9 @@ export default function Financing() {
 
   const getStatusMessage = () => {
     switch (formState) {
-      case 'analyzing': return "Analizando perfil...";
-      case 'validating': return "Validando datos...";
-      case 'evaluating': return "Evaluando operación...";
+      case 'analyzing': return "Analizando perfil y capital...";
+      case 'validating': return "Validando historial comercial...";
+      case 'evaluating': return "Aprobando línea de crédito...";
       case 'approved': return "Financiamiento aprobado";
       default: return "";
     }
@@ -61,13 +60,13 @@ export default function Financing() {
             className="inline-flex items-center px-4 py-2 rounded-full bg-rose-500/10 text-rose-400 text-sm font-medium mb-6 border border-rose-500/20"
           >
             <ShieldCheck className="w-4 h-4 mr-2" />
-            Aprobación Segura
+            Financiamiento Corporativo
           </motion.div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-            Financiamiento para importación
+            Línea de Crédito Atlas
           </h2>
           <p className="text-xl text-slate-400">
-            Accedé a financiamiento para iniciar tu importación con solo el 50% inicial.
+            Evaluación rápida para operaciones mayoristas. Inicia tu importación abonando únicamente el 50% inicial.
           </p>
         </div>
 
@@ -84,49 +83,38 @@ export default function Financing() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Nombre completo</label>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Nombre completo / Empresa</label>
                       <input required type="text" className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all" />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">País</label>
-                      <input required type="text" className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all" />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Producto a importar</label>
-                      <input required type="text" className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Cantidad</label>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">País de Operación</label>
                       <input required type="text" className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all" />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Inversión estimada (USD)</label>
-                      <input required type="number" className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all" />
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Inversión Estimada (USD)</label>
+                      <input required type="number" min="5000" placeholder="Mínimo $5,000" className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all" />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Experiencia en reventa</label>
-                      <select required className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all">
-                        <option value="">Selecciona una opción</option>
-                        <option value="none">Sin experiencia</option>
-                        <option value="1-3">1 a 3 años</option>
-                        <option value="3+">Más de 3 años</option>
-                      </select>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Producto de Interés</label>
+                      <input required type="text" className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all" />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Fecha estimada de importación</label>
-                    <input required type="month" className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all" />
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Experiencia en Importación/Reventa</label>
+                    <select required className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all">
+                      <option value="">Selecciona una opción</option>
+                      <option value="none">Primera importación</option>
+                      <option value="1-3">1 a 3 años operando</option>
+                      <option value="3+">Más de 3 años operando</option>
+                    </select>
                   </div>
 
                   <button type="submit" className="w-full py-4 bg-rose-600 text-white rounded-xl font-bold text-lg hover:bg-rose-700 transition-colors shadow-lg shadow-rose-600/20 flex items-center justify-center mt-8">
-                    Solicitar Evaluación
+                    Solicitar Evaluación (5-7 min)
                   </button>
                 </form>
               </motion.div>
@@ -170,14 +158,23 @@ export default function Financing() {
                 <div className="w-24 h-24 bg-green-500/10 rounded-full flex items-center justify-center mb-8 border border-green-500/20">
                   <CheckCircle2 className="w-12 h-12 text-green-500" />
                 </div>
-                <h3 className="text-3xl font-bold text-white mb-4">Financiamiento Aprobado</h3>
+                <h3 className="text-3xl font-bold text-white mb-4">Línea de Crédito Aprobada</h3>
                 <p className="text-slate-400 text-lg mb-10 max-w-md">
-                  Tu perfil ha sido validado exitosamente. Puedes iniciar tu importación abonando únicamente el 50% inicial.
+                  Tu perfil ha sido validado exitosamente. Puedes iniciar tu operación mayorista abonando únicamente el 50% inicial.
                 </p>
-                <button className="w-full max-w-md py-4 bg-green-600 text-white rounded-xl font-bold text-lg hover:bg-green-700 transition-colors shadow-lg shadow-green-600/20 flex items-center justify-center">
+                <a 
+                  href="https://link.mercadopago.com.ar/camdiaz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full max-w-md py-4 bg-rose-600 text-white rounded-xl font-bold text-lg hover:bg-rose-700 transition-colors shadow-lg shadow-rose-600/20 flex items-center justify-center group"
+                >
                   <CreditCard className="w-5 h-5 mr-2" />
                   PAGAR 50% INICIAL
-                </button>
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </a>
+                <p className="text-center text-xs text-slate-500 mt-4">
+                  Serás redirigido a Mercado Pago para un pago seguro.
+                </p>
               </motion.div>
             )}
           </AnimatePresence>

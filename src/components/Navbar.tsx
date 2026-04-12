@@ -5,9 +5,8 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Operaciones', href: '#operations' },
-    { name: 'Casos Reales', href: '#cases' },
-    { name: 'Educación', href: '#education' },
+    { name: 'Textiles', href: '#textiles' },
+    { name: 'Tecnología', href: '#tecnologia' },
     { name: 'Pedidos Personalizados', href: '#custom-order' },
   ];
 
