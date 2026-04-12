@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { Calculator, DollarSign, Clock, TrendingUp, Info, CheckCircle2 } from 'lucide-react';
+import { Calculator, DollarSign, Clock, TrendingUp, Info, CheckCircle2, ArrowRight } from 'lucide-react';
 
 export default function Simulator() {
   const [price, setPrice] = useState<number>(5000);
@@ -42,7 +42,7 @@ export default function Simulator() {
               
               <div className="space-y-5">
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1">Precio de Compra Total (USD)</label>
+                  <label className="block text-sm font-medium text-slate-300 mb-1">Inversión en Producto (USD)</label>
                   <input 
                     type="number" 
                     value={price}
@@ -72,7 +72,7 @@ export default function Simulator() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1">Precio de Venta Total (USD)</label>
+                  <label className="block text-sm font-medium text-slate-300 mb-1">Venta Total Estimada (USD)</label>
                   <input 
                     type="number" 
                     value={resalePrice}
@@ -106,6 +106,33 @@ export default function Simulator() {
                 <div className="flex justify-between items-center">
                   <span className="text-slate-400">Margen de Ganancia</span>
                   <span className="font-bold text-rose-400">{margin.toFixed(2)}%</span>
+                </div>
+              </div>
+
+              {/* Scaling Strategy */}
+              <div className="mt-8 pt-6 border-t border-slate-800">
+                <h4 className="text-white font-bold mb-4 flex items-center">
+                  <TrendingUp className="w-5 h-5 mr-2 text-indigo-400" />
+                  Estrategia de Escalamiento
+                </h4>
+                <div className="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                  <p className="text-sm text-slate-400 mb-3">Si aumentás el volumen, el costo logístico por unidad baja drásticamente.</p>
+                  <div className="flex items-center justify-between text-sm">
+                    <div className="text-center">
+                      <p className="text-slate-500">Inversión Actual</p>
+                      <p className="font-bold text-white">${totalInvestment.toLocaleString()}</p>
+                    </div>
+                    <ArrowRight className="w-4 h-4 text-slate-600" />
+                    <div className="text-center">
+                      <p className="text-slate-500">Inversión Sugerida</p>
+                      <p className="font-bold text-indigo-400">${(totalInvestment * 2).toLocaleString()}</p>
+                    </div>
+                    <ArrowRight className="w-4 h-4 text-slate-600" />
+                    <div className="text-center">
+                      <p className="text-slate-500">Ganancia Proyectada</p>
+                      <p className="font-bold text-rose-500">${(netProfit * 2.5).toLocaleString()}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

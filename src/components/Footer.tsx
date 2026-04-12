@@ -16,7 +16,7 @@ export default function Footer() {
               Plataforma global de sourcing e importación mayorista. Operaciones seguras, verificadas y de alto volumen para inversores y empresas.
             </p>
             <p className="text-xs text-slate-500">
-              Negocio registrado y operando bajo las normativas de comercio internacional vigentes.
+              Empresa registrada. Operando bajo estrictas normativas de comercio internacional y regulaciones aduaneras vigentes.
             </p>
           </div>
           
@@ -43,7 +43,7 @@ export default function Footer() {
           <p>&copy; {new Date().getFullYear()} Atlas Export Company. Todos los derechos reservados.</p>
           <div className="mt-4 md:mt-0 space-x-4">
             <a href="#" className="hover:text-white transition-colors">Aviso Legal</a>
-            <a href="#" className="hover:text-white transition-colors">Términos y Condiciones</a>
+            <a href="#" className="hover:text-white transition-colors">Términos Comerciales</a>
             <a href="#" className="hover:text-white transition-colors">Política de Privacidad</a>
           </div>
         </div>

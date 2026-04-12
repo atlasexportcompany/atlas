@@ -21,22 +21,22 @@ const products = [
   {
     id: 'smart-tv-55',
     name: 'Smart TV 55" 4K UHD',
-    price: 450,
+    price: 620,
     suggestedQty: 'Contenedor compartido',
     category: 'Electrónica',
-    demand: 'Alta',
+    demand: 'Alta demanda en eventos globales como el mundial',
     availability: 'Disponible',
     rotation: 'Media',
     complexity: 'Bajo',
     recommended: 'Empresas / Retail',
     flag: 'China',
-    specs: ['Precio base: 450 USD', 'Volumen alto: 420 USD', 'Certificación CE/FCC'],
-    profitSim: { invest: 9000, sell: 14000, profit: 5000 }
+    specs: ['20-50: 620 USD', '50+: 580 USD', 'Certificación CE/FCC'],
+    profitSim: { invest: 12400, sell: 18000, profit: 5600 }
   },
   {
     id: 'laptop-corp',
     name: 'Laptop Empresarial i7',
-    price: 750,
+    price: 820,
     suggestedQty: '20-100 unidades',
     category: 'Informática',
     demand: 'Estable',
@@ -45,13 +45,13 @@ const products = [
     complexity: 'Medio',
     recommended: 'Licitaciones / Empresas',
     flag: 'China',
-    specs: ['Precio base: 750 USD', 'Volumen alto: 700 USD', 'Chasis de aluminio'],
-    profitSim: { invest: 15000, sell: 22000, profit: 7000 }
+    specs: ['20-50: 820 USD', '50+: 780 USD', 'Chasis de aluminio'],
+    profitSim: { invest: 16400, sell: 24000, profit: 7600 }
   },
   {
     id: 'fardos-premium',
     name: 'Fardos Ropa Premium',
-    price: 250,
+    price: 350,
     suggestedQty: 'Lote de 20 fardos',
     category: 'Textiles',
     demand: 'Muy Alta',
@@ -60,8 +60,98 @@ const products = [
     complexity: 'Bajo',
     recommended: 'Boutiques / Mayoristas',
     flag: 'USA',
-    specs: ['Precio: 250 USD por fardo', 'Calidad Premium', 'Marcas reconocidas'],
-    profitSim: { invest: 5000, sell: 12000, profit: 7000 }
+    specs: ['Precio: 350 USD por fardo', 'Selección premium de alta calidad', 'Marcas reconocidas'],
+    profitSim: { invest: 7000, sell: 15000, profit: 8000 }
+  },
+  {
+    id: 'zapatillas',
+    name: 'Zapatillas Deportivas',
+    price: 55,
+    suggestedQty: '50-100 pares',
+    category: 'Calzado',
+    demand: 'Alta',
+    availability: 'Disponible',
+    rotation: 'Alta',
+    complexity: 'Bajo',
+    recommended: 'Tiendas deportivas / Reventa',
+    flag: 'China',
+    specs: ['50-100: 45-70 USD', 'Varios modelos y tallas', 'Calidad AAA'],
+    profitSim: { invest: 5500, sell: 11000, profit: 5500 }
+  },
+  {
+    id: 'auriculares',
+    name: 'Auriculares Inalámbricos',
+    price: 12,
+    suggestedQty: '500+ unidades',
+    category: 'Accesorios',
+    demand: 'Muy Alta',
+    availability: 'Stock amplio',
+    rotation: 'Muy Alta',
+    complexity: 'Bajo',
+    recommended: 'Kioscos / E-commerce',
+    flag: 'China',
+    specs: ['Precio: 8-15 USD', 'Bluetooth 5.3', 'Cancelación de ruido'],
+    profitSim: { invest: 6000, sell: 15000, profit: 9000 }
+  },
+  {
+    id: 'smartwatches',
+    name: 'Smartwatches',
+    price: 30,
+    suggestedQty: '200+ unidades',
+    category: 'Accesorios',
+    demand: 'Alta',
+    availability: 'Disponible',
+    rotation: 'Alta',
+    complexity: 'Bajo',
+    recommended: 'Tiendas de tecnología',
+    flag: 'China',
+    specs: ['Precio: 20-45 USD', 'Monitor de salud', 'Resistente al agua'],
+    profitSim: { invest: 6000, sell: 12000, profit: 6000 }
+  },
+  {
+    id: 'accesorios-celular',
+    name: 'Accesorios para Celular',
+    price: 3,
+    suggestedQty: '2000+ unidades',
+    category: 'Accesorios',
+    demand: 'Constante',
+    availability: 'Stock amplio',
+    rotation: 'Muy Alta',
+    complexity: 'Bajo',
+    recommended: 'Mayoristas / Distribuidores',
+    flag: 'China',
+    specs: ['Precio: 2-5 USD', 'Cables, cargadores, fundas', 'Alta rotación'],
+    profitSim: { invest: 6000, sell: 18000, profit: 12000 }
+  },
+  {
+    id: 'ropa-deportiva',
+    name: 'Ropa Deportiva',
+    price: 12,
+    suggestedQty: '500+ prendas',
+    category: 'Textiles',
+    demand: 'Alta',
+    availability: 'Disponible',
+    rotation: 'Alta',
+    complexity: 'Bajo',
+    recommended: 'Gimnasios / Tiendas',
+    flag: 'China',
+    specs: ['Precio: 8-18 USD', 'Telas transpirables', 'Diseños modernos'],
+    profitSim: { invest: 6000, sell: 15000, profit: 9000 }
+  },
+  {
+    id: 'consolas',
+    name: 'Consolas de Videojuegos',
+    price: 380,
+    suggestedQty: '20-50 unidades',
+    category: 'Entretenimiento',
+    demand: 'Alta',
+    availability: 'Stock limitado',
+    rotation: 'Media',
+    complexity: 'Medio',
+    recommended: 'Tiendas especializadas',
+    flag: 'USA',
+    specs: ['Precio: 300-450 USD', 'Última generación', 'Garantía oficial'],
+    profitSim: { invest: 7600, sell: 11000, profit: 3400 }
   }
 ];
 
@@ -114,7 +204,7 @@ export default function StrategicProducts() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Product List */}
-          <div className="lg:col-span-1 space-y-4">
+          <div className="lg:col-span-1 space-y-4 max-h-[800px] overflow-y-auto pr-2 custom-scrollbar">
             {products.map((product) => (
               <div 
                 key={product.id}
@@ -170,7 +260,7 @@ export default function StrategicProducts() {
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                  <div className="bg-slate-950 p-4 rounded-xl border border-slate-800/50">
+                  <div className="bg-slate-950 p-4 rounded-xl border border-slate-800/50 col-span-2 md:col-span-1">
                     <p className="text-xs text-slate-500 mb-1">Demanda</p>
                     <p className="text-sm font-bold text-white">{selectedProduct.demand}</p>
                   </div>
