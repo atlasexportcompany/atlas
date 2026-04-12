@@ -4,22 +4,22 @@ import { Search, Calculator, Ship, CheckCircle2 } from 'lucide-react';
 export default function HowItWorks() {
   const steps = [
     {
-      icon: <Search className="w-8 h-8 text-blue-600" />,
+      icon: <Search className="w-8 h-8 text-rose-500" />,
       title: "1. Solicitud & Sourcing",
       description: "Nos dices qué producto necesitas. Nuestro equipo lo busca en mercados internacionales (China, USA, etc.) asegurando calidad y precio."
     },
     {
-      icon: <Calculator className="w-8 h-8 text-blue-600" />,
+      icon: <Calculator className="w-8 h-8 text-rose-500" />,
       title: "2. Cotización Transparente",
       description: "Recibes un desglose completo: costo del producto, logística internacional, impuestos y nuestro margen. Sin sorpresas."
     },
     {
-      icon: <Ship className="w-8 h-8 text-blue-600" />,
+      icon: <Ship className="w-8 h-8 text-rose-500" />,
       title: "3. Importación & Logística",
       description: "Nos encargamos de todo el proceso de compra, aduanas y envío (aéreo o marítimo) hasta tu región."
     },
     {
-      icon: <CheckCircle2 className="w-8 h-8 text-blue-600" />,
+      icon: <CheckCircle2 className="w-8 h-8 text-rose-500" />,
       title: "4. Entrega & Escala",
       description: "Recibes tu mercancía lista para vender. Optimiza tu tiempo y enfócate en hacer crecer tu negocio."
     }
@@ -45,9 +45,9 @@ export default function HowItWorks() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-slate-900/50 rounded-2xl p-8 border border-slate-800 hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-900/20 transition-all"
+              className="bg-slate-900/50 rounded-3xl p-8 border border-slate-800 hover:border-rose-500/30 hover:shadow-lg hover:shadow-rose-900/20 transition-all"
             >
-              <div className="w-16 h-16 bg-slate-800 rounded-xl flex items-center justify-center shadow-sm border border-slate-700 mb-6">
+              <div className="w-16 h-16 bg-slate-950 rounded-2xl flex items-center justify-center shadow-sm border border-slate-800 mb-6">
                 {step.icon}
               </div>
               <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>

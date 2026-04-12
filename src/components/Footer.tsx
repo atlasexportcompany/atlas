@@ -7,31 +7,33 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center mb-4">
-              <Globe className="h-8 w-8 text-blue-500" />
+              <Globe className="h-8 w-8 text-rose-500" />
               <span className="ml-2 text-xl font-bold tracking-tight text-white">
                 ATLAS EXPORT
               </span>
             </div>
-            <p className="text-sm max-w-sm">
+            <p className="text-sm max-w-sm mb-4">
               Plataforma global de sourcing e importación bajo demanda. Simplificamos el comercio internacional para que tú te enfoques en vender.
+            </p>
+            <p className="text-xs text-slate-500">
+              Negocio registrado y operando bajo las normativas de comercio internacional vigentes.
             </p>
           </div>
           
           <div>
             <h4 className="text-white font-semibold mb-4">Enlaces</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#how-it-works" className="hover:text-blue-400 transition-colors">Cómo Funciona</a></li>
-              <li><a href="#products" className="hover:text-blue-400 transition-colors">Productos Base</a></li>
-              <li><a href="#simulator" className="hover:text-blue-400 transition-colors">Simulador</a></li>
-              <li><a href="#custom-order" className="hover:text-blue-400 transition-colors">Pedido Personalizado</a></li>
+              <li><a href="#catalog" className="hover:text-rose-400 transition-colors">Catálogo de Productos</a></li>
+              <li><a href="#simulator" className="hover:text-rose-400 transition-colors">Simulador de Importación</a></li>
+              <li><a href="#custom-order" className="hover:text-rose-400 transition-colors">Pedido Personalizado</a></li>
             </ul>
           </div>
           
           <div>
             <h4 className="text-white font-semibold mb-4">Contacto</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="https://wa.me/1234567890" className="hover:text-blue-400 transition-colors">WhatsApp</a></li>
-              <li><a href="mailto:contacto@atlasexport.com" className="hover:text-blue-400 transition-colors">contacto@atlasexport.com</a></li>
+              <li><a href="https://wa.me/50584510505" className="hover:text-rose-400 transition-colors">WhatsApp: +505 8451 0505</a></li>
+              <li><a href="mailto:atlasexportcompany@gmail.com" className="hover:text-rose-400 transition-colors">atlasexportcompany@gmail.com</a></li>
             </ul>
           </div>
         </div>
@@ -39,8 +41,9 @@ export default function Footer() {
         <div className="pt-8 border-t border-slate-800 text-sm flex flex-col md:flex-row justify-between items-center">
           <p>&copy; {new Date().getFullYear()} Atlas Export Company. Todos los derechos reservados.</p>
           <div className="mt-4 md:mt-0 space-x-4">
-            <a href="#" className="hover:text-white transition-colors">Términos de Servicio</a>
-            <a href="#" className="hover:text-white transition-colors">Privacidad</a>
+            <a href="#" className="hover:text-white transition-colors">Aviso Legal</a>
+            <a href="#" className="hover:text-white transition-colors">Términos y Condiciones</a>
+            <a href="#" className="hover:text-white transition-colors">Política de Privacidad</a>
           </div>
         </div>
       </div>

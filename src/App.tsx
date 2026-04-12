@@ -20,23 +20,39 @@ import {
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import HowItWorks from './components/HowItWorks';
-import BaseProducts from './components/BaseProducts';
+import ProductCatalog from './components/ProductCatalog';
 import Simulator from './components/Simulator';
 import CustomOrder from './components/CustomOrder';
+import CommercialTerms from './components/CommercialTerms';
+import Financing from './components/Financing';
+import GlobalLogistics from './components/GlobalLogistics';
+import MarketComparator from './components/MarketComparator';
+import FAQ from './components/FAQ';
+import Testimonials from './components/Testimonials';
+import CompanyHistory from './components/CompanyHistory';
 import Footer from './components/Footer';
+import LiveActivity from './components/LiveActivity';
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-black text-slate-50 font-sans selection:bg-blue-500/30">
+    <div className="min-h-screen bg-black text-slate-50 font-sans selection:bg-rose-500/30">
       <Navbar />
       <main>
         <Hero />
+        <GlobalLogistics />
         <HowItWorks />
-        <BaseProducts />
+        <ProductCatalog />
         <Simulator />
+        <MarketComparator />
+        <Financing />
+        <CommercialTerms />
         <CustomOrder />
+        <Testimonials />
+        <CompanyHistory />
+        <FAQ />
       </main>
       <Footer />
+      <LiveActivity />
     </div>
   );
 }
