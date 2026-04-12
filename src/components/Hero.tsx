@@ -63,7 +63,7 @@ export default function Hero() {
             className="inline-flex items-center px-4 py-2 rounded-full bg-rose-500/10 text-rose-400 text-sm font-bold mb-8 border border-rose-500/30 animate-pulse"
           >
             <AlertCircle className="w-4 h-4 mr-2" />
-            Operaciones mayoristas desde 5,000 USD
+            Operaciones desde 5,000 USD
           </motion.div>
           
           <motion.h1 
@@ -101,7 +101,7 @@ export default function Hero() {
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
             <a 
-              href="https://wa.me/50584510505"
+              href="https://wa.me/50584510505?text=Hola,%20necesito%20contactar%20a%20un%20asesor%20para%20una%20operación%20mayorista."
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto px-8 py-4 bg-slate-900 text-white border border-slate-700 rounded-full font-bold text-lg hover:bg-slate-800 transition-colors flex items-center justify-center"
@@ -119,8 +119,8 @@ export default function Hero() {
             <div className="flex items-center bg-slate-900/80 backdrop-blur-sm px-5 py-3 rounded-full border border-slate-800 shadow-xl">
               <Users className="w-5 h-5 text-rose-500 mr-3" />
               <span className="font-bold text-white mr-2 text-base">{customerCount}</span> 
-              <span className="hidden sm:inline">clientes activos importando globalmente</span>
-              <span className="sm:hidden">clientes activos</span>
+              <span className="hidden sm:inline">operaciones en tiempo real</span>
+              <span className="sm:hidden">operaciones activas</span>
               <span className="relative flex h-2 w-2 ml-4">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
@@ -129,7 +129,7 @@ export default function Hero() {
             <div className="flex items-center bg-slate-900/80 backdrop-blur-sm px-5 py-3 rounded-full border border-slate-800 shadow-xl">
               <ShieldCheck className="w-5 h-5 text-indigo-500 mr-3" />
               <span className="font-bold text-white mr-2">Inversión Mínima:</span> 
-              <span>$5,000 USD</span>
+              <span>5,000 USD</span>
             </div>
           </motion.div>
         </div>

@@ -1,27 +1,35 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronDown, HelpCircle } from 'lucide-react';
+import { ChevronDown, ShieldAlert } from 'lucide-react';
 
 const faqs = [
   {
-    question: "¿Cómo manejan los trámites de aduana?",
-    answer: "Nos encargamos del 100% del proceso aduanero. Nuestro equipo de agentes aduanales gestiona la clasificación arancelaria, el pago de impuestos y la liberación de la mercancía. El costo estimado de estos trámites ya viene incluido en tu cotización inicial."
+    question: "¿Y si pierdo mi dinero?",
+    answer: "Operamos únicamente con proveedores verificados y cada operación incluye seguimiento completo desde origen hasta entrega final."
   },
   {
-    question: "¿Cuáles son los tiempos reales de entrega?",
-    answer: "Depende del origen y el método de envío. Desde Estados Unidos (aéreo) suele tomar de 7 a 20 días. Desde China (marítimo), el estándar es de 15 a 45 días. Siempre te daremos un estimado realista antes de confirmar tu pedido."
+    question: "¿Esto es confiable?",
+    answer: "Trabajamos con una red internacional de fabricantes y gestionamos todo el proceso logístico, aduanero y operativo."
   },
   {
-    question: "¿Qué riesgos existen y cómo me protegen?",
-    answer: "El principal riesgo en importación es la calidad del proveedor. Lo mitigamos trabajando solo con fábricas verificadas y realizando inspecciones de calidad antes del embarque. Además, el esquema de pago 50/50 protege tu capital hasta que la mercancía esté lista."
+    question: "¿Cuánto tarda?",
+    answer: "Depende del tipo de carga, pero siempre informamos tiempos reales antes de confirmar la operación."
   },
   {
-    question: "¿Puedo importar si no soy una empresa registrada?",
-    answer: "Sí. Dependiendo de tu país, podemos realizar la importación a nombre de nuestra comercializadora y entregarte la mercancía con factura local, o asesorarte para que te registres como importador si planeas escalar tu negocio."
+    question: "¿Por qué tengo que pagar 50%?",
+    answer: "El pago inicial cubre costos operativos, compra de mercancía y reserva logística."
   },
   {
-    question: "¿Qué pasa si la mercancía llega dañada?",
-    answer: "Todos nuestros envíos internacionales cuentan con seguro de carga. En el raro caso de daño o pérdida durante el tránsito, gestionamos el reclamo con la aseguradora para proteger tu inversión."
+    question: "Nunca importé",
+    answer: "Nos encargamos de todo el proceso. No necesitás experiencia previa."
+  },
+  {
+    question: "¿Qué gano yo?",
+    answer: "Nuestros clientes compran a precio mayorista internacional y venden en su mercado con márgenes competitivos."
+  },
+  {
+    question: "¿Puedo empezar con poco?",
+    answer: "Trabajamos con operaciones optimizadas desde 5,000 USD para asegurar rentabilidad real."
   }
 ];
 
@@ -38,8 +46,8 @@ export default function FAQ() {
             viewport={{ once: true }}
             className="inline-flex items-center px-4 py-2 rounded-full bg-rose-500/10 text-rose-400 text-sm font-medium mb-6 border border-rose-500/20"
           >
-            <HelpCircle className="w-4 h-4 mr-2" />
-            Preguntas Frecuentes
+            <ShieldAlert className="w-4 h-4 mr-2" />
+            Transparencia Total
           </motion.div>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Resolvemos tus dudas

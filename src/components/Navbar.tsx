@@ -1,13 +1,14 @@
-import { Globe, Menu, X, Search, Phone, Mail } from 'lucide-react';
+import { Globe, Menu, X, Search, Phone, Mail, MessageCircle } from 'lucide-react';
 import { useState } from 'react';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Textiles', href: '#textiles' },
-    { name: 'Tecnología', href: '#tecnologia' },
-    { name: 'Pedidos Personalizados', href: '#custom-order' },
+    { name: 'Oportunidades', href: '#strategic-products' },
+    { name: 'Calculadora', href: '#simulator' },
+    { name: 'Financiamiento', href: '#financing' },
+    { name: 'Sourcing', href: '#custom-order' },
   ];
 
   return (
@@ -65,10 +66,19 @@ export default function Navbar() {
               href="https://wa.me/50584510505" 
               target="_blank" 
               rel="noopener noreferrer"
+              className="text-sm font-medium text-slate-300 hover:text-rose-400 transition-colors flex items-center"
+            >
+              <MessageCircle className="w-4 h-4 mr-1" />
+              WhatsApp
+            </a>
+            <a 
+              href="https://wa.me/50584510505?text=Hola,%20necesito%20contactar%20a%20un%20asesor%20para%20una%20operación%20mayorista." 
+              target="_blank" 
+              rel="noopener noreferrer"
               className="bg-rose-600 text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-rose-700 transition-colors shadow-lg shadow-rose-600/20 flex items-center"
             >
               <Phone className="w-4 h-4 mr-2" />
-              WhatsApp
+              Contactar asesor
             </a>
           </div>
 
@@ -116,10 +126,17 @@ export default function Navbar() {
                 </a>
                 <a
                   href="https://wa.me/50584510505"
+                  className="flex items-center justify-center w-full bg-slate-800 text-white px-5 py-3 rounded-lg text-base font-medium hover:bg-slate-700"
+                >
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  WhatsApp
+                </a>
+                <a
+                  href="https://wa.me/50584510505?text=Hola,%20necesito%20contactar%20a%20un%20asesor%20para%20una%20operación%20mayorista."
                   className="flex items-center justify-center w-full bg-rose-600 text-white px-5 py-3 rounded-lg text-base font-medium hover:bg-rose-700"
                 >
                   <Phone className="w-5 h-5 mr-2" />
-                  Contactar por WhatsApp
+                  Contactar asesor
                 </a>
               </div>
             </div>

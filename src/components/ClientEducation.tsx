@@ -13,25 +13,40 @@ export default function ClientEducation() {
             className="inline-flex items-center px-4 py-2 rounded-full bg-rose-500/10 text-rose-400 text-sm font-medium mb-6 border border-rose-500/20"
           >
             <BookOpen className="w-4 h-4 mr-2" />
-            Educación del Cliente
+            Educación Comercial
           </motion.div>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Conocimiento para Escalar
           </h2>
           <p className="text-xl text-slate-400">
-            No solo movemos carga, te enseñamos a construir un negocio de importación rentable y sostenible a largo plazo.
+            Te brindamos las estrategias clave para maximizar la rentabilidad de tus operaciones mayoristas.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8 hover:border-rose-500/30 transition-colors">
             <div className="w-12 h-12 bg-slate-950 rounded-xl flex items-center justify-center mb-6 border border-slate-800">
               <Target className="w-6 h-6 text-rose-500" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-4">Cómo empezar a importar</h3>
-            <p className="text-slate-400 leading-relaxed mb-6">
-              El primer paso es definir tu nicho y presupuesto. Recomendamos iniciar con productos de alta rotación y bajo volumen físico para probar el mercado local antes de escalar a contenedores completos.
-            </p>
+            <h3 className="text-2xl font-bold text-white mb-4">Cómo Importar con Éxito</h3>
+            <ul className="space-y-4 text-slate-400 mb-8">
+              <li className="flex items-start">
+                <span className="text-rose-500 font-bold mr-2">1.</span>
+                Define tu presupuesto (Mínimo $5,000 USD para viabilidad).
+              </li>
+              <li className="flex items-start">
+                <span className="text-rose-500 font-bold mr-2">2.</span>
+                Selecciona productos de alta rotación comprobada.
+              </li>
+              <li className="flex items-start">
+                <span className="text-rose-500 font-bold mr-2">3.</span>
+                Delega la logística y aduanas a expertos (Atlas).
+              </li>
+              <li className="flex items-start">
+                <span className="text-rose-500 font-bold mr-2">4.</span>
+                Asegura tu capital operando solo con proveedores verificados.
+              </li>
+            </ul>
             <a href="#custom-order" className="text-rose-500 font-medium hover:text-rose-400 flex items-center">
               Solicitar asesoría inicial <ArrowRight className="w-4 h-4 ml-1" />
             </a>
@@ -41,25 +56,27 @@ export default function ClientEducation() {
             <div className="w-12 h-12 bg-slate-950 rounded-xl flex items-center justify-center mb-6 border border-slate-800">
               <TrendingUp className="w-6 h-6 text-rose-500" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-4">Cuánto se puede ganar</h3>
-            <p className="text-slate-400 leading-relaxed mb-6">
-              Los márgenes varían por industria. En tecnología OEM el margen neto suele rondar el 30-45%, mientras que en textiles premium o accesorios puede superar el 100% dependiendo de tu canal de distribución.
-            </p>
-            <a href="#financing" className="text-rose-500 font-medium hover:text-rose-400 flex items-center">
-              Ver opciones de financiamiento <ArrowRight className="w-4 h-4 ml-1" />
-            </a>
-          </div>
-
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8 hover:border-rose-500/30 transition-colors">
-            <div className="w-12 h-12 bg-slate-950 rounded-xl flex items-center justify-center mb-6 border border-slate-800">
-              <Package className="w-6 h-6 text-rose-500" />
-            </div>
-            <h3 className="text-xl font-bold text-white mb-4">Qué productos funcionan</h3>
-            <p className="text-slate-400 leading-relaxed mb-6">
-              Actualmente vemos alta demanda y rentabilidad en: repuestos automotrices, maquinaria ligera para emprendedores, electrónica de consumo genérica y fardos de ropa vintage clasificada.
-            </p>
-            <a href="#operations" className="text-rose-500 font-medium hover:text-rose-400 flex items-center">
-              Explorar tipos de operaciones <ArrowRight className="w-4 h-4 ml-1" />
+            <h3 className="text-2xl font-bold text-white mb-4">Estrategias de Reventa</h3>
+            <ul className="space-y-4 text-slate-400 mb-8">
+              <li className="flex items-start">
+                <span className="text-rose-500 font-bold mr-2">1.</span>
+                Pre-vende el stock mientras la mercancía está en tránsito.
+              </li>
+              <li className="flex items-start">
+                <span className="text-rose-500 font-bold mr-2">2.</span>
+                Establece canales B2B locales (distribuidores, tiendas).
+              </li>
+              <li className="flex items-start">
+                <span className="text-rose-500 font-bold mr-2">3.</span>
+                Calcula tus márgenes incluyendo costos de marketing local.
+              </li>
+              <li className="flex items-start">
+                <span className="text-rose-500 font-bold mr-2">4.</span>
+                Reinvierte rápidamente para aprovechar el interés compuesto.
+              </li>
+            </ul>
+            <a href="#simulator" className="text-rose-500 font-medium hover:text-rose-400 flex items-center">
+              Simular rentabilidad <ArrowRight className="w-4 h-4 ml-1" />
             </a>
           </div>
         </div>

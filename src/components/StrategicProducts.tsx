@@ -6,8 +6,8 @@ const products = [
   {
     id: 'iphone-17',
     name: 'iPhone 17 (Lote OEM)',
-    price: 600,
-    suggestedQty: '10-50 unidades',
+    price: 1050,
+    suggestedQty: '20-50 unidades',
     category: 'Tecnología',
     demand: 'Alta',
     availability: 'Stock limitado',
@@ -15,13 +15,13 @@ const products = [
     complexity: 'Medio',
     recommended: 'Reventa',
     flag: 'USA',
-    specs: ['Desbloqueado de fábrica', 'Garantía internacional', 'Empaque original'],
-    profitSim: { invest: 6000, sell: 12000, profit: 6000 }
+    specs: ['10-20: 1100 USD', '20-50: 1050 USD', '50+: 1000 USD'],
+    profitSim: { invest: 21000, sell: 26000, profit: 5000 }
   },
   {
     id: 'smart-tv-55',
     name: 'Smart TV 55" 4K UHD',
-    price: 280,
+    price: 450,
     suggestedQty: 'Contenedor compartido',
     category: 'Electrónica',
     demand: 'Alta',
@@ -30,13 +30,13 @@ const products = [
     complexity: 'Bajo',
     recommended: 'Empresas / Retail',
     flag: 'China',
-    specs: ['Panel LED 4K', 'Smart OS integrado', 'Certificación CE/FCC'],
-    profitSim: { invest: 5600, sell: 9800, profit: 4200 }
+    specs: ['Precio base: 450 USD', 'Volumen alto: 420 USD', 'Certificación CE/FCC'],
+    profitSim: { invest: 9000, sell: 14000, profit: 5000 }
   },
   {
     id: 'laptop-corp',
     name: 'Laptop Empresarial i7',
-    price: 450,
+    price: 750,
     suggestedQty: '20-100 unidades',
     category: 'Informática',
     demand: 'Estable',
@@ -45,8 +45,23 @@ const products = [
     complexity: 'Medio',
     recommended: 'Licitaciones / Empresas',
     flag: 'China',
-    specs: ['Intel Core i7 12va Gen', '16GB RAM / 512GB SSD', 'Chasis de aluminio'],
-    profitSim: { invest: 9000, sell: 15000, profit: 6000 }
+    specs: ['Precio base: 750 USD', 'Volumen alto: 700 USD', 'Chasis de aluminio'],
+    profitSim: { invest: 15000, sell: 22000, profit: 7000 }
+  },
+  {
+    id: 'fardos-premium',
+    name: 'Fardos Ropa Premium',
+    price: 250,
+    suggestedQty: 'Lote de 20 fardos',
+    category: 'Textiles',
+    demand: 'Muy Alta',
+    availability: 'Disponible',
+    rotation: 'Muy Alta',
+    complexity: 'Bajo',
+    recommended: 'Boutiques / Mayoristas',
+    flag: 'USA',
+    specs: ['Precio: 250 USD por fardo', 'Calidad Premium', 'Marcas reconocidas'],
+    profitSim: { invest: 5000, sell: 12000, profit: 7000 }
   }
 ];
 
@@ -71,7 +86,7 @@ export default function StrategicProducts() {
             Productos Estratégicos
           </h2>
           <p className="text-xl text-slate-400">
-            Operaciones mayoristas verificadas con alta rentabilidad. Inversión mínima requerida: $5,000 USD.
+            Operaciones mayoristas verificadas con alta rentabilidad. Inversión mínima requerida: 5,000 USD.
           </p>
         </div>
 
@@ -81,7 +96,7 @@ export default function StrategicProducts() {
             <Ship className="w-8 h-8 text-indigo-400 mr-4" />
             <div>
               <h4 className="text-white font-bold text-lg">Contenedor Consolidado - Salida en 2 días</h4>
-              <p className="text-indigo-300 text-sm">Estado: 70% ocupado. Precio desde $25,000 USD (Contenedor completo).</p>
+              <p className="text-indigo-300 text-sm">Estado: 70% ocupado. Opciones: Lote, Contenedor Compartido, Contenedor Completo.</p>
             </div>
           </div>
           <div className="flex items-center space-x-4">
@@ -140,6 +155,17 @@ export default function StrategicProducts() {
                   <div className="text-right">
                     <p className="text-sm text-slate-400 mb-1">Precio Mayorista</p>
                     <p className="text-4xl font-black text-white">${selectedProduct.price}</p>
+                  </div>
+                </div>
+
+                <div className="mb-6">
+                  <h4 className="text-white font-bold mb-3">Escala de Precios</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedProduct.specs.map((spec, index) => (
+                      <span key={index} className="px-3 py-1 bg-slate-800 text-slate-300 text-sm rounded-lg border border-slate-700">
+                        {spec}
+                      </span>
+                    ))}
                   </div>
                 </div>
 
