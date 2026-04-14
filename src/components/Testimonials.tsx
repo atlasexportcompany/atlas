@@ -56,7 +56,7 @@ export default function Testimonials() {
                 ))}
               </div>
               <p className="text-slate-300 mb-8 leading-relaxed relative z-10 italic">
-                "{testimonial.content}"
+                {testimonial.content}
               </p>
               <div className="flex items-center relative z-10">
                 <div className="w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center mr-4 border border-slate-700">
