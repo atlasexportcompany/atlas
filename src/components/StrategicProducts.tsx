@@ -1,158 +1,149 @@
-import { motion } from 'motion/react';
-import { Package, Ship, TrendingUp, AlertCircle, CheckCircle2, ArrowRight, ShieldCheck, Clock } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Package, Globe, TrendingUp, CheckCircle2, ShieldCheck } from 'lucide-react';
 import { useState } from 'react';
+
+const countries = [
+  { id: 'AR', name: 'Argentina' }, { id: 'MX', name: 'México' }, { id: 'CO', name: 'Colombia' }, { id: 'CL', name: 'Chile' }, { id: 'PE', name: 'Perú' }, { id: 'ES', name: 'España' }, { id: 'US', name: 'Estados Unidos' }
+];
+
+const operationTypes = [
+  { id: 'lote', name: 'Lote Menor' },
+  { id: 'compartido', name: 'Contenedor Compartido' },
+  { id: 'completo', name: 'Contenedor Completo' },
+];
 
 const products = [
   {
     id: 'iphone-17',
     name: 'Smartphones Gama Alta',
     price: 1050,
+    cost: { min: 1000, max: 1100 },
+    resale: { min: 1200, max: 1400, demand: 'Alta' },
     suggestedQty: '20-50 unidades',
     category: 'Tecnología',
-    demand: 'Alta',
-    availability: 'Stock limitado',
-    rotation: 'Alta',
-    complexity: 'Medio',
-    recommended: 'Reventa',
     flag: 'USA',
-    specs: ['10-20 uds: 1100 USD', '20-50 uds: 1050 USD', '50+ uds: 1000 USD'],
-    profitSim: { invest: 21000, sell: 26000, profit: 5000 }
   },
   {
     id: 'smart-tv-55',
     name: 'Smart TV 55" 4K UHD Premium',
     price: 820,
+    cost: { min: 800, max: 900 },
+    resale: { min: 1100, max: 1400, demand: 'Alta' },
     suggestedQty: 'Contenedor compartido',
     category: 'Electrónica',
-    demand: 'Alta demanda en eventos deportivos y temporadas globales como el mundial, ideal para reventa',
-    availability: 'Disponible',
-    rotation: 'Media',
-    complexity: 'Bajo',
-    recommended: 'Empresas / Retail',
     flag: 'China',
-    specs: ['10-20 uds: 900 USD', '20-50 uds: 820 USD', '50+ uds: 800 USD'],
-    profitSim: { invest: 16400, sell: 24000, profit: 7600 }
   },
   {
     id: 'laptop-corp',
     name: 'Laptop Empresarial i7 Alta Gama',
     price: 900,
+    cost: { min: 800, max: 1000 },
+    resale: { min: 1200, max: 1500, demand: 'Alta' },
     suggestedQty: '20-100 unidades',
     category: 'Informática',
-    demand: 'Estable',
-    availability: 'Stock limitado',
-    rotation: 'Alta',
-    complexity: 'Medio',
-    recommended: 'Licitaciones / Empresas',
     flag: 'China',
-    specs: ['10-20 uds: 1000 USD', '20-50 uds: 900 USD', '50+ uds: 800 USD'],
-    profitSim: { invest: 18000, sell: 26000, profit: 8000 }
   },
   {
     id: 'ps5',
     name: 'PlayStation 5 Slim o Standard',
     price: 800,
+    cost: { min: 750, max: 900 },
+    resale: { min: 950, max: 1200, demand: 'Muy Alta' },
     suggestedQty: '20-50 unidades',
     category: 'Entretenimiento',
-    demand: 'Alta',
-    availability: 'Stock limitado',
-    rotation: 'Media',
-    complexity: 'Medio',
-    recommended: 'Tiendas especializadas',
     flag: 'USA',
-    specs: ['10-20 uds: 900 USD', '20-50 uds: 800 USD', '50+ uds: 750 USD'],
-    profitSim: { invest: 16000, sell: 22000, profit: 6000 }
   },
   {
     id: 'xbox',
     name: 'Xbox Series X',
     price: 750,
+    cost: { min: 700, max: 850 },
+    resale: { min: 950, max: 1150, demand: 'Muy Alta' },
     suggestedQty: '20-50 unidades',
     category: 'Entretenimiento',
-    demand: 'Alta',
-    availability: 'Stock limitado',
-    rotation: 'Media',
-    complexity: 'Medio',
-    recommended: 'Tiendas especializadas',
     flag: 'USA',
-    specs: ['10-20 uds: 850 USD', '20-50 uds: 750 USD', '50+ uds: 700 USD'],
-    profitSim: { invest: 15000, sell: 21000, profit: 6000 }
   },
   {
     id: 'zapatillas',
     name: 'Zapatillas Deportivas Premium',
     price: 80,
+    cost: { min: 80, max: 90 },
+    resale: { min: 130, max: 200, demand: 'Alta' },
     suggestedQty: '50-100 pares',
     category: 'Calzado',
-    demand: 'Alta',
-    availability: 'Disponible',
-    rotation: 'Alta',
-    complexity: 'Bajo',
-    recommended: 'Tiendas deportivas / Reventa',
     flag: 'China',
-    specs: ['10-20 uds: 90 USD', '20-50 uds: 85 USD', '50+ uds: 80 USD'],
-    profitSim: { invest: 8000, sell: 15000, profit: 7000 }
   },
   {
     id: 'ropa-deportiva',
     name: 'Ropa Deportiva Alta Calidad',
     price: 35,
+    cost: { min: 25, max: 40 },
+    resale: { min: 80, max: 140, demand: 'Alta' },
     suggestedQty: '100-300 prendas',
     category: 'Textiles',
-    demand: 'Alta',
-    availability: 'Disponible',
-    rotation: 'Alta',
-    complexity: 'Bajo',
-    recommended: 'Gimnasios / Tiendas',
     flag: 'China',
-    specs: ['10-20 uds: 40 USD', '20-50 uds: 35 USD', '50+ uds: 25 USD'],
-    profitSim: { invest: 10500, sell: 20000, profit: 9500 }
   },
   {
     id: 'accesorios-celular',
     name: 'Accesorios para Celular Alta Rotación',
     price: 8,
+    cost: { min: 5, max: 10 },
+    resale: { min: 15, max: 30, demand: 'Constante' },
     suggestedQty: '200-500 unidades',
     category: 'Accesorios',
-    demand: 'Constante',
-    availability: 'Stock amplio',
-    rotation: 'Muy Alta',
-    complexity: 'Bajo',
-    recommended: 'Mayoristas / Distribuidores',
     flag: 'China',
-    specs: ['10-20 uds: 10 USD', '20-50 uds: 8 USD', '50+ uds: 5 USD'],
-    profitSim: { invest: 4000, sell: 10000, profit: 6000 }
   }
 ];
 
 export default function StrategicProducts() {
-  const [selectedProduct, setSelectedProduct] = useState(products[0]);
-  const [step, setStep] = useState<'config' | 'payment' | 'success'>('config');
-  const [quantity, setQuantity] = useState(15);
-  const [operationId, setOperationId] = useState('');
+  const [step, setStep] = useState<1 | 2 | 3 | 4 | 5>(1);
+  
+  const [selectedProduct, setSelectedProduct] = useState(products[0].id);
+  const [selectedCountry, setSelectedCountry] = useState('AR');
+  const [operationType, setOperationType] = useState('lote');
+  const [quantity, setQuantity] = useState(50);
+  
   const [formData, setFormData] = useState({
     name: '',
     country: '',
+    city: '',
     email: '',
     whatsapp: '',
+    sellingTime: '',
     paymentMethod: 'Transferencia',
     receipt: null as File | null
   });
 
-  const handleWhatsAppSubmit = () => {
-    console.log("Nueva Operación (Sistema Interno):", {
-      ...formData,
-      product: selectedProduct.name,
-      quantity,
-      totalInvestment,
-      paidAmount: totalInvestment / 2,
-      operationId
-    });
+  const [operationId, setOperationId] = useState('');
 
+  const product = products.find(p => p.id === selectedProduct)!;
+  
+  let unitCost = product.cost.max;
+  if (operationType === 'compartido') unitCost = (product.cost.min + product.cost.max) / 2;
+  if (operationType === 'completo') unitCost = product.cost.min;
+
+  const totalInvestment = unitCost * quantity;
+  const avgResalePrice = (product.resale.min + product.resale.max) / 2;
+  const totalRevenue = avgResalePrice * quantity;
+  const netProfit = totalRevenue - totalInvestment;
+  const margin = (netProfit / totalRevenue) * 100;
+
+  const handleNext = () => {
+    if (step === 3) {
+      setOperationId(`ATX-2026-${Math.floor(1000 + Math.random() * 9000)}`);
+    }
+    setStep((prev) => (prev + 1) as any);
+  };
+
+  const handleBack = () => {
+    setStep((prev) => (prev - 1) as any);
+  };
+
+  const handleWhatsAppSubmit = () => {
     const message = `Hola, ya realicé el pago del 50% para mi operación.
 
 ID: ${operationId}
-Producto: ${selectedProduct.name}
+Producto: ${product.name}
 Cantidad: ${quantity}
 Monto enviado: ${(totalInvestment / 2).toLocaleString('en-US', {maximumFractionDigits: 0})} USD
 
@@ -160,31 +151,24 @@ Adjunto comprobante.`;
 
     const whatsappUrl = `https://wa.me/50584510505?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
-    setStep('success');
+    setStep(5);
   };
 
   const handleEmailSubmit = () => {
-    console.log("Nueva Operación (Sistema Interno):", {
-      ...formData,
-      product: selectedProduct.name,
-      quantity,
-      totalInvestment,
-      paidAmount: totalInvestment / 2,
-      operationId
-    });
-
     const subject = `Comprobante de Pago - Operación ${operationId}`;
     const body = `Hola, adjunto el comprobante de pago del 50% para mi operación.
 
 Datos del cliente:
 Nombre/Empresa: ${formData.name}
 País: ${formData.country}
+Ciudad/Puerto: ${formData.city}
 Email: ${formData.email}
 WhatsApp: ${formData.whatsapp}
+Tiempo estimado de venta: ${formData.sellingTime}
 
 Datos de la operación:
 ID: ${operationId}
-Producto: ${selectedProduct.name}
+Producto: ${product.name}
 Cantidad: ${quantity}
 Monto enviado: ${(totalInvestment / 2).toLocaleString('en-US', {maximumFractionDigits: 0})} USD
 Método de pago: ${formData.paymentMethod}
@@ -193,290 +177,284 @@ Por favor, confirmar recepción.`;
 
     const mailtoUrl = `mailto:contacto@atlasexport.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.open(mailtoUrl, '_blank');
-    setStep('success');
+    setStep(5);
   };
-
-  const getQuickSuggestions = (productId: string) => {
-    if (productId === 'fardos-premium' || productId === 'ropa-deportiva') return [20, 50, 100, 200];
-    return [10, 20, 50, 100];
-  };
-
-  const unitPrice = selectedProduct.price;
-  const totalInvestment = unitPrice * quantity;
-  const profitMargin = selectedProduct.profitSim.profit / selectedProduct.profitSim.invest;
-  const estimatedResale = totalInvestment * (1 + profitMargin);
-  const estimatedProfit = estimatedResale - totalInvestment;
 
   return (
-    <section id="strategic-products" className="py-24 bg-slate-950 border-t border-slate-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center px-4 py-2 rounded-full bg-rose-500/10 text-rose-400 text-sm font-medium mb-6 border border-rose-500/20"
-          >
-            <Package className="w-4 h-4 mr-2" />
-            Oportunidades de Inversión
-          </motion.div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Productos Estratégicos
-          </h2>
-          <p className="text-xl text-slate-400">
-            Operaciones mayoristas verificadas con alta rentabilidad. Inversión mínima requerida: 5,000 USD.
-          </p>
-        </div>
+    <section id="strategic-products" className="py-24 bg-slate-950 border-t border-slate-900 min-h-screen flex items-center">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         
-        <div className="text-center mb-12">
-          <p className="inline-block px-6 py-3 bg-slate-900 border border-slate-800 rounded-xl text-rose-400 font-bold shadow-lg">
-            Productos seleccionados de calidad premium para reventa profesional
-          </p>
-        </div>
-
-        {/* Container Status Alert */}
-        <div className="bg-indigo-900/20 border border-indigo-500/30 rounded-2xl p-6 mb-12 flex flex-col md:flex-row items-center justify-between">
-          <div className="flex items-center mb-4 md:mb-0">
-            <Ship className="w-8 h-8 text-indigo-400 mr-4" />
-            <div>
-              <h4 className="text-white font-bold text-lg">Contenedor Consolidado - Salida en 2 días</h4>
-              <p className="text-indigo-300 text-sm">Estado: 70% ocupado. Opciones: Lote, Contenedor Compartido, Contenedor Completo.</p>
+        {step < 5 && (
+          <div className="mb-8">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-2xl font-bold text-white">Configurar Operación</h2>
+              <span className="text-rose-500 font-bold bg-rose-500/10 px-3 py-1 rounded-full text-sm">
+                Paso {step} de 4
+              </span>
+            </div>
+            <div className="w-full bg-slate-900 h-2 rounded-full overflow-hidden">
+              <motion.div 
+                className="bg-rose-500 h-full"
+                initial={{ width: `${((step - 1) / 4) * 100}%` }}
+                animate={{ width: `${(step / 4) * 100}%` }}
+                transition={{ duration: 0.3 }}
+              />
             </div>
           </div>
-          <div className="flex items-center space-x-4">
-            <div className="text-right">
-              <p className="text-xs text-slate-400 mb-1">Capacidad Disponible</p>
-              <div className="w-32 h-2 bg-slate-800 rounded-full overflow-hidden">
-                <div className="h-full bg-indigo-500 w-[30%]"></div>
-              </div>
-            </div>
-            <a href="#custom-order" className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold rounded-lg transition-colors">
-              Reservar Espacio
-            </a>
-          </div>
-        </div>
+        )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Product List */}
-          <div className="lg:col-span-1 space-y-4 max-h-[800px] overflow-y-auto pr-2 custom-scrollbar">
-            {products.map((product) => (
-              <div 
-                key={product.id}
-                onClick={() => { setSelectedProduct(product); setStep('config'); }}
-                className={`p-6 rounded-2xl border cursor-pointer transition-all ${selectedProduct.id === product.id ? 'bg-slate-900 border-rose-500 shadow-lg shadow-rose-900/20' : 'bg-slate-900/50 border-slate-800 hover:border-slate-700'}`}
-              >
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-lg font-bold text-white">{product.name}</h3>
-                  <span className="text-xs font-bold px-2 py-1 bg-slate-800 text-slate-300 rounded">{product.flag}</span>
-                </div>
-                <p className="text-2xl font-black text-rose-500 mb-2">${product.price} <span className="text-sm text-slate-500 font-normal">USD / ud.</span></p>
-                <div className="flex items-center text-xs text-slate-400">
-                  <Package className="w-3 h-3 mr-1" />
-                  Sugerido: {product.suggestedQty}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Product Details & Purchase Flow */}
-          <div className="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-3xl p-8 relative overflow-hidden">
-            {step === 'config' && (
+        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-10 shadow-2xl relative overflow-hidden">
+          <AnimatePresence mode="wait">
+            
+            {step === 1 && (
               <motion.div
-                key="details"
+                key="step1"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="h-full flex flex-col"
+                exit={{ opacity: 0, x: -20 }}
+                className="space-y-6"
               >
-                <div className="flex justify-between items-start mb-6">
-                  <div>
-                    <div className="flex items-center space-x-2 mb-2">
-                      <span className="px-2 py-1 bg-orange-500/20 text-orange-400 text-xs font-bold rounded flex items-center"><AlertCircle className="w-3 h-3 mr-1"/> {selectedProduct.availability}</span>
-                    </div>
-                    <h2 className="text-3xl font-bold text-white mb-2">{selectedProduct.name}</h2>
-                    <p className="text-slate-400">Categoría: {selectedProduct.category} | Complejidad: {selectedProduct.complexity}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-sm text-slate-400 mb-1">Precio Mayorista</p>
-                    <p className="text-4xl font-black text-white">${selectedProduct.price}</p>
+                <h3 className="text-xl font-bold text-white mb-6 flex items-center">
+                  <Package className="w-5 h-5 mr-2 text-rose-500" />
+                  Selección de Producto
+                </h3>
+                
+                <div>
+                  <label className="block text-sm font-medium text-slate-300 mb-2">Producto</label>
+                  <select 
+                    value={selectedProduct}
+                    onChange={(e) => setSelectedProduct(e.target.value)}
+                    className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 outline-none transition-all"
+                  >
+                    {products.map(p => <option key={p.id} value={p.id}>{p.name} - {p.flag}</option>)}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-300 mb-2">País Destino</label>
+                  <select 
+                    value={selectedCountry}
+                    onChange={(e) => setSelectedCountry(e.target.value)}
+                    className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 outline-none transition-all"
+                  >
+                    {countries.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-300 mb-2">Tipo de Operación</label>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                    {operationTypes.map(t => (
+                      <button
+                        key={t.id}
+                        onClick={() => setOperationType(t.id)}
+                        className={`py-3 px-2 text-xs font-medium rounded-xl border transition-all ${operationType === t.id ? 'bg-rose-600 border-rose-500 text-white shadow-lg shadow-rose-600/20' : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-600'}`}
+                      >
+                        {t.name}
+                      </button>
+                    ))}
                   </div>
                 </div>
 
-                <div className="mb-6">
-                  <h4 className="text-white font-bold mb-3">Escala de Precios</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedProduct.specs.map((spec, index) => (
-                      <span key={index} className="px-3 py-1 bg-slate-800 text-slate-300 text-sm rounded-lg border border-slate-700">
-                        {spec}
-                      </span>
-                    ))}
+                <div>
+                  <label className="block text-sm font-medium text-slate-300 mb-2">Cantidad (Unidades)</label>
+                  <input 
+                    type="number" 
+                    min="1"
+                    value={quantity}
+                    onChange={(e) => setQuantity(Number(e.target.value))}
+                    className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 outline-none transition-all"
+                  />
+                </div>
+
+                <button 
+                  onClick={handleNext}
+                  className="w-full py-4 bg-rose-600 text-white rounded-xl font-bold text-lg hover:bg-rose-700 transition-colors shadow-lg shadow-rose-600/20 mt-8"
+                >
+                  Continuar
+                </button>
+              </motion.div>
+            )}
+
+            {step === 2 && (
+              <motion.div
+                key="step2"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                className="space-y-6"
+              >
+                <div className="flex items-center mb-6">
+                  <button onClick={handleBack} className="text-slate-400 hover:text-white mr-4">← Volver</button>
+                  <h3 className="text-xl font-bold text-white flex items-center">
+                    <TrendingUp className="w-5 h-5 mr-2 text-rose-500" />
+                    Proyección de Rentabilidad
+                  </h3>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div className="bg-slate-950 p-6 rounded-2xl border border-slate-800">
+                    <p className="text-slate-400 mb-2 font-medium">Inversión Total Estimada</p>
+                    <p className="text-4xl font-black text-white">${totalInvestment.toLocaleString('en-US', {maximumFractionDigits: 0})} <span className="text-lg text-slate-500 font-normal">USD</span></p>
+                    <p className="text-sm text-slate-500 mt-3 flex items-center">
+                      <Package className="w-4 h-4 mr-1" /> Costo por unidad: ${unitCost.toLocaleString('en-US', {maximumFractionDigits: 0})} USD
+                    </p>
                   </div>
-                  <p className="text-xs text-slate-500 mt-3 italic">
-                    * Precios mayoristas internacionales sujetos a volumen y disponibilidad
+                  
+                  <div className="bg-slate-950 p-6 rounded-2xl border border-slate-800">
+                    <p className="text-slate-400 mb-2 font-medium">Ingresos Proyectados</p>
+                    <p className="text-4xl font-black text-white">${totalRevenue.toLocaleString('en-US', {maximumFractionDigits: 0})} <span className="text-lg text-slate-500 font-normal">USD</span></p>
+                    <p className="text-sm text-slate-500 mt-3 flex items-center">
+                      <TrendingUp className="w-4 h-4 mr-1" /> Reventa est.: ${product.resale.min} - ${product.resale.max} USD/ud
+                    </p>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-r from-green-900/20 to-slate-900 border border-green-500/30 rounded-2xl p-8 mb-8 flex flex-col md:flex-row items-center justify-between">
+                  <div className="mb-4 md:mb-0 text-center md:text-left">
+                    <p className="text-green-400 font-bold mb-1 text-lg">Ganancia Neta Estimada</p>
+                    <p className="text-5xl font-black text-green-500">${netProfit.toLocaleString('en-US', {maximumFractionDigits: 0})} <span className="text-xl font-bold">USD</span></p>
+                  </div>
+                  <div className="text-center md:text-right">
+                    <p className="text-slate-400 mb-1 font-medium">Margen de Rentabilidad</p>
+                    <p className="text-4xl font-bold text-white">{margin.toFixed(1)}%</p>
+                  </div>
+                </div>
+
+                <button 
+                  onClick={handleNext}
+                  className="w-full py-4 bg-rose-600 text-white rounded-xl font-bold text-lg hover:bg-rose-700 transition-colors shadow-lg shadow-rose-600/20"
+                >
+                  Continuar a Datos de Envío
+                </button>
+              </motion.div>
+            )}
+
+            {step === 3 && (
+              <motion.div
+                key="step3"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                className="space-y-6"
+              >
+                <div className="flex items-center mb-6">
+                  <button onClick={handleBack} className="text-slate-400 hover:text-white mr-4">← Volver</button>
+                  <h3 className="text-xl font-bold text-white flex items-center">
+                    <Globe className="w-5 h-5 mr-2 text-rose-500" />
+                    Datos de Operación y Envío
+                  </h3>
+                </div>
+
+                <div className="space-y-4">
+                  <input type="text" placeholder="Nombre / Empresa" className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 outline-none" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="text" placeholder="País" className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 outline-none" value={formData.country} onChange={e => setFormData({...formData, country: e.target.value})} />
+                    <input type="text" placeholder="Ciudad / Puerto de destino" className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 outline-none" value={formData.city} onChange={e => setFormData({...formData, city: e.target.value})} />
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="email" placeholder="Email" className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 outline-none" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
+                    <input type="tel" placeholder="WhatsApp" className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 outline-none" value={formData.whatsapp} onChange={e => setFormData({...formData, whatsapp: e.target.value})} />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">¿En cuánto tiempo planeás vender esta mercadería?</label>
+                    <select 
+                      className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 outline-none"
+                      value={formData.sellingTime}
+                      onChange={e => setFormData({...formData, sellingTime: e.target.value})}
+                    >
+                      <option value="" disabled>Seleccionar tiempo estimado</option>
+                      <option value="Menos de 1 mes">Menos de 1 mes</option>
+                      <option value="1 a 3 meses">1 a 3 meses</option>
+                      <option value="3 a 6 meses">3 a 6 meses</option>
+                      <option value="Más de 6 meses">Más de 6 meses</option>
+                    </select>
+                  </div>
+                </div>
+
+                <button 
+                  onClick={handleNext}
+                  disabled={!formData.name || !formData.country || !formData.city || !formData.email || !formData.whatsapp || !formData.sellingTime}
+                  className="w-full py-4 bg-rose-600 text-white rounded-xl font-bold text-lg hover:bg-rose-700 transition-colors shadow-lg shadow-rose-600/20 disabled:opacity-50 disabled:cursor-not-allowed mt-8"
+                >
+                  Continuar a Pago
+                </button>
+              </motion.div>
+            )}
+
+            {step === 4 && (
+              <motion.div
+                key="step4"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                className="space-y-6"
+              >
+                <div className="flex items-center mb-6">
+                  <button onClick={handleBack} className="text-slate-400 hover:text-white mr-4">← Volver</button>
+                  <h3 className="text-xl font-bold text-white flex items-center">
+                    <ShieldCheck className="w-5 h-5 mr-2 text-rose-500" />
+                    Reserva y Pago
+                  </h3>
+                </div>
+
+                <div className="bg-slate-950 p-6 rounded-xl border border-slate-800 mb-6">
+                  <h4 className="text-white font-bold mb-4 border-b border-slate-800 pb-2">Resumen de la Operación</h4>
+                  <div className="space-y-3 text-sm">
+                    <div className="flex justify-between"><span className="text-slate-400">ID Operación:</span> <span className="text-white font-bold">{operationId}</span></div>
+                    <div className="flex justify-between"><span className="text-slate-400">Producto:</span> <span className="text-white font-bold">{product.name}</span></div>
+                    <div className="flex justify-between"><span className="text-slate-400">Cantidad:</span> <span className="text-white font-bold">{quantity} unidades</span></div>
+                    <div className="flex justify-between"><span className="text-slate-400">Destino:</span> <span className="text-white font-bold">{formData.city}, {formData.country}</span></div>
+                    <div className="flex justify-between pt-3 border-t border-slate-800"><span className="text-slate-400">Inversión Total:</span> <span className="text-white font-bold">${totalInvestment.toLocaleString('en-US', {maximumFractionDigits: 0})} USD</span></div>
+                  </div>
+                </div>
+
+                <div className="bg-rose-900/20 border border-rose-500/30 rounded-xl p-6 text-center mb-6">
+                  <p className="text-rose-400 font-bold mb-2 text-lg">Pago Inicial (50%)</p>
+                  <p className="text-4xl font-black text-white mb-4">${(totalInvestment / 2).toLocaleString('en-US', {maximumFractionDigits: 0})} USD</p>
+                  <p className="text-sm text-rose-200">
+                    El pago inicial del 50% se utiliza para asegurar stock, cubrir logística internacional y reservar tu operación.
                   </p>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                  <div className="bg-slate-950 p-4 rounded-xl border border-slate-800/50 col-span-2 md:col-span-1">
-                    <p className="text-xs text-slate-500 mb-1">Demanda</p>
-                    <p className="text-sm font-bold text-white">{selectedProduct.demand}</p>
-                  </div>
-                  <div className="bg-slate-950 p-4 rounded-xl border border-slate-800/50">
-                    <p className="text-xs text-slate-500 mb-1">Rotación</p>
-                    <p className="text-sm font-bold text-white">{selectedProduct.rotation}</p>
-                  </div>
-                  <div className="bg-slate-950 p-4 rounded-xl border border-slate-800/50">
-                    <p className="text-xs text-slate-500 mb-1">Recomendado para</p>
-                    <p className="text-sm font-bold text-white">{selectedProduct.recommended}</p>
-                  </div>
-                  <div className="bg-slate-950 p-4 rounded-xl border border-slate-800/50">
-                    <p className="text-xs text-slate-500 mb-1">Historial Precio</p>
-                    <p className="text-sm font-bold text-green-400">Estable</p>
-                  </div>
-                </div>
-
-                <div className="mb-8">
-                  <h4 className="text-white font-bold mb-4">Configurar Operación</h4>
-                  <div className="bg-slate-950 p-6 rounded-xl border border-slate-800 mb-4">
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Cantidad a importar (Mínimo 15)</label>
-                    <div className="flex items-center gap-4 mb-4">
-                      <input 
-                        type="number" 
-                        min="15"
-                        value={quantity}
-                        onChange={(e) => setQuantity(Math.max(15, parseInt(e.target.value) || 15))}
-                        className="w-32 px-4 py-3 bg-slate-900 border border-slate-700 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none text-center font-bold text-lg"
-                      />
-                      <span className="text-slate-400">{selectedProduct.id === 'fardos-premium' ? 'fardos' : 'unidades'}</span>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {getQuickSuggestions(selectedProduct.id).map(qty => (
-                        <button
-                          key={qty}
-                          onClick={() => setQuantity(Math.max(15, qty))}
-                          className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors ${quantity === Math.max(15, qty) ? 'bg-rose-600 text-white' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}`}
-                        >
-                          {qty} {selectedProduct.id === 'fardos-premium' ? 'fardos' : 'unidades'}
-                        </button>
-                      ))}
-                    </div>
-                    {selectedProduct.id === 'fardos-premium' && (
-                      <p className="text-xs text-rose-400 mt-3 font-medium">
-                        Disponible para operaciones de alto volumen y distribución mayorista
-                      </p>
-                    )}
-                  </div>
-
-                  <h4 className="text-white font-bold mb-4">Resumen de Operación</h4>
-                  <div className="bg-gradient-to-r from-slate-950 to-slate-900 border border-slate-800 rounded-xl p-6 mb-4">
-                    <div className="grid grid-cols-2 gap-4 mb-6 pb-6 border-b border-slate-800/50">
-                      <div>
-                        <p className="text-sm text-slate-400">Precio por unidad</p>
-                        <p className="text-lg font-bold text-white">${unitPrice.toLocaleString('en-US', {maximumFractionDigits: 0})} USD</p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-slate-400">Cantidad seleccionada</p>
-                        <p className="text-lg font-bold text-white">{quantity} {selectedProduct.id === 'fardos-premium' ? 'fardos' : 'unidades'}</p>
-                      </div>
-                    </div>
-                    <div className="flex flex-col md:flex-row items-center justify-between">
-                      <div className="text-center md:text-left mb-4 md:mb-0">
-                        <p className="text-sm text-slate-400">Inversión Total</p>
-                        <p className="text-xl font-bold text-white">${totalInvestment.toLocaleString('en-US', {maximumFractionDigits: 0})} USD</p>
-                      </div>
-                      <ArrowRight className="w-5 h-5 text-slate-600 hidden md:block" />
-                      <div className="text-center md:text-left mb-4 md:mb-0">
-                        <p className="text-sm text-slate-400">Reventa Estimada</p>
-                        <p className="text-xl font-bold text-white">${estimatedResale.toLocaleString('en-US', {maximumFractionDigits: 0})} USD</p>
-                      </div>
-                      <ArrowRight className="w-5 h-5 text-slate-600 hidden md:block" />
-                      <div className="text-center md:text-left">
-                        <p className="text-sm text-rose-400 font-bold uppercase tracking-wider mb-1">Ganancia Neta</p>
-                        <p className="text-4xl font-black text-rose-500">${estimatedProfit.toLocaleString('en-US', {maximumFractionDigits: 0})} USD</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bg-indigo-900/20 border border-indigo-500/30 rounded-lg p-3 text-center">
-                    <p className="text-indigo-300 text-sm font-medium">💡 Clientes exitosos invierten entre 15,000 USD y 50,000 USD</p>
-                  </div>
-                </div>
-
-                <div className="mt-auto">
-                  <button 
-                    onClick={() => {
-                      setOperationId(`ATX-2026-${Math.floor(1000 + Math.random() * 9000)}`);
-                      setStep('payment');
-                    }}
-                    className="w-full py-4 bg-rose-600 text-white rounded-xl font-bold text-lg hover:bg-rose-700 transition-colors shadow-lg shadow-rose-600/20 flex flex-col items-center justify-center"
-                  >
-                    <span>Reservar operación con 50%</span>
-                    <span className="text-sm font-normal text-rose-200 mt-1">Pago inicial: ${(totalInvestment / 2).toLocaleString('en-US', {maximumFractionDigits: 0})} USD</span>
-                  </button>
-                </div>
-              </motion.div>
-            )}
-            {step === 'payment' && (
-              <motion.div
-                key="payment"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                className="h-full flex flex-col"
-              >
-                <div className="flex items-center mb-6">
-                  <button onClick={() => setStep('config')} className="text-slate-400 hover:text-white mr-4">
-                    ← Volver
-                  </button>
-                  <h2 className="text-2xl font-bold text-white">Reserva iniciada</h2>
-                </div>
-                <p className="text-slate-400 mb-6">Para confirmar tu operación, completá el pago del 50% y enviá el comprobante.</p>
-                
-                <div className="bg-slate-950 p-6 rounded-xl border border-slate-800 mb-6">
-                  <p className="text-rose-400 font-bold text-lg mb-1">ID de operación: {operationId}</p>
-                  <p className="text-white font-bold text-xl mb-4">Monto a transferir: ${(totalInvestment / 2).toLocaleString('en-US', {maximumFractionDigits: 0})} USD</p>
+                <div className="space-y-4 mb-6">
+                  <label className="block text-sm font-medium text-slate-300">Método de Pago</label>
+                  <select className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 outline-none" value={formData.paymentMethod} onChange={e => setFormData({...formData, paymentMethod: e.target.value})}>
+                    <option value="Transferencia">Transferencia Bancaria</option>
+                    <option value="Cripto">Criptomonedas (USDT/USDC)</option>
+                    <option value="Otro">Otro método</option>
+                  </select>
                   
-                  <div className="space-y-4">
-                    <input type="text" placeholder="Nombre completo / Empresa" className="w-full px-4 py-3 bg-slate-900 border border-slate-700 text-white rounded-xl focus:ring-2 focus:ring-rose-500 outline-none" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
-                    <input type="text" placeholder="País" className="w-full px-4 py-3 bg-slate-900 border border-slate-700 text-white rounded-xl focus:ring-2 focus:ring-rose-500 outline-none" value={formData.country} onChange={e => setFormData({...formData, country: e.target.value})} />
-                    <input type="email" placeholder="Email" className="w-full px-4 py-3 bg-slate-900 border border-slate-700 text-white rounded-xl focus:ring-2 focus:ring-rose-500 outline-none" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
-                    <input type="tel" placeholder="WhatsApp" className="w-full px-4 py-3 bg-slate-900 border border-slate-700 text-white rounded-xl focus:ring-2 focus:ring-rose-500 outline-none" value={formData.whatsapp} onChange={e => setFormData({...formData, whatsapp: e.target.value})} />
-                    
-                    <select className="w-full px-4 py-3 bg-slate-900 border border-slate-700 text-white rounded-xl focus:ring-2 focus:ring-rose-500 outline-none" value={formData.paymentMethod} onChange={e => setFormData({...formData, paymentMethod: e.target.value})}>
-                      <option value="Transferencia">Transferencia Bancaria</option>
-                      <option value="Cripto">Criptomonedas (USDT/USDC)</option>
-                      <option value="Otro">Otro método</option>
-                    </select>
-                    
-                    <div className="relative">
-                      <input type="file" id="receipt" className="hidden" onChange={e => setFormData({...formData, receipt: e.target.files?.[0] || null})} accept="image/*,.pdf" />
-                      <label htmlFor="receipt" className="w-full px-4 py-3 bg-slate-900 border border-slate-700 text-slate-300 rounded-xl flex items-center justify-center cursor-pointer hover:bg-slate-800 transition-colors">
-                        {formData.receipt ? formData.receipt.name : 'Subir comprobante (Imagen o PDF)'}
-                      </label>
-                    </div>
+                  <div className="relative">
+                    <input type="file" id="receipt" className="hidden" onChange={e => setFormData({...formData, receipt: e.target.files?.[0] || null})} accept="image/*,.pdf" />
+                    <label htmlFor="receipt" className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-slate-300 rounded-xl flex items-center justify-center cursor-pointer hover:bg-slate-800 transition-colors">
+                      {formData.receipt ? formData.receipt.name : 'Subir comprobante (Imagen o PDF)'}
+                    </label>
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-3 mb-6">
+                <div className="flex flex-col gap-3">
                   <button onClick={handleWhatsAppSubmit} className="w-full py-4 bg-[#25D366] text-white rounded-xl font-bold text-lg hover:bg-[#128C7E] transition-colors flex items-center justify-center">
-                    Enviar comprobante por WhatsApp
+                    Pagar 50% y Reservar Operación (WhatsApp)
                   </button>
                   <button onClick={handleEmailSubmit} className="w-full py-4 bg-slate-800 text-white rounded-xl font-bold text-lg hover:bg-slate-700 transition-colors flex items-center justify-center">
-                    Enviar comprobante por Email
+                    Pagar 50% y Reservar Operación (Email)
                   </button>
                 </div>
-
-                <p className="text-xs text-slate-500 text-center">
-                  Todas las operaciones son gestionadas desde Nicaragua con acceso directo a proveedores en Asia y USA, garantizando calidad premium y trazabilidad logística.
-                </p>
               </motion.div>
             )}
 
-            {step === 'success' && (
+            {step === 5 && (
               <motion.div
                 key="success"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="h-full flex flex-col items-center justify-center text-center py-12"
+                className="text-center py-12"
               >
-                <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mb-6">
+                <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
                   <CheckCircle2 className="w-10 h-10 text-green-500" />
                 </div>
                 <h2 className="text-3xl font-bold text-white mb-4">Comprobante recibido</h2>
@@ -484,12 +462,13 @@ Por favor, confirmar recepción.`;
                   Tu operación está en proceso de validación y preparación logística.
                 </p>
                 <p className="text-slate-500 mb-8">ID de operación: <span className="text-white font-bold">{operationId}</span></p>
-                <button onClick={() => setStep('config')} className="px-8 py-3 bg-slate-800 text-white rounded-xl font-bold hover:bg-slate-700 transition-colors">
-                  Volver al inicio
+                <button onClick={() => setStep(1)} className="px-8 py-3 bg-slate-800 text-white rounded-xl font-bold hover:bg-slate-700 transition-colors">
+                  Iniciar nueva operación
                 </button>
               </motion.div>
             )}
-          </div>
+
+          </AnimatePresence>
         </div>
       </div>
     </section>

@@ -21,7 +21,6 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import HowItWorks from './components/HowItWorks';
 import OperationTypes from './components/OperationTypes';
-import Simulator from './components/Simulator';
 import CustomOrder from './components/CustomOrder';
 import CommercialTerms from './components/CommercialTerms';
 import Financing from './components/Financing';
@@ -46,7 +45,6 @@ export default function App() {
         <Hero />
         <TrustIndicators />
         <StrategicProducts />
-        <Simulator />
         <Financing />
         <GlobalLogistics />
         <HowItWorks />
