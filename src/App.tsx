@@ -36,6 +36,7 @@ import SuccessCases from './components/SuccessCases';
 import SystemStatus from './components/SystemStatus';
 import ClientEducation from './components/ClientEducation';
 import StrategicProducts from './components/StrategicProducts';
+import TrustIndicators from './components/TrustIndicators';
 
 export default function App() {
   return (
@@ -43,20 +44,12 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
-        <SystemStatus />
-        <GlobalLogistics />
+        <TrustIndicators />
         <StrategicProducts />
-        <HowItWorks />
-        <OperationTypes />
-        <SuccessCases />
-        <ClientEducation />
         <Simulator />
-        <MarketComparator />
         <Financing />
-        <CommercialTerms />
-        <CustomOrder />
-        <Testimonials />
-        <CompanyHistory />
+        <GlobalLogistics />
+        <HowItWorks />
         <FAQ />
       </main>
       <Footer />

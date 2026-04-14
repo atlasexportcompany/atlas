@@ -15,28 +15,28 @@ const products = [
     complexity: 'Medio',
     recommended: 'Reventa',
     flag: 'USA',
-    specs: ['10-20: 1100 USD', '20-50: 1050 USD', '50+: 1000 USD'],
+    specs: ['10-20 uds: 1100 USD', '20-50 uds: 1050 USD', '50+ uds: 1000 USD'],
     profitSim: { invest: 21000, sell: 26000, profit: 5000 }
   },
   {
     id: 'smart-tv-55',
-    name: 'Smart TV 55" 4K PREMIUM',
+    name: 'Smart TV 55" 4K UHD Premium',
     price: 820,
     suggestedQty: 'Contenedor compartido',
     category: 'Electrónica',
-    demand: 'Alta demanda en eventos globales',
+    demand: 'Alta demanda en eventos deportivos y temporadas globales como el mundial, ideal para reventa',
     availability: 'Disponible',
     rotation: 'Media',
     complexity: 'Bajo',
     recommended: 'Empresas / Retail',
     flag: 'China',
-    specs: ['20-50: 820 USD', '50+: 800 USD', 'Alta demanda en eventos deportivos y temporadas globales como el mundial, ideal para reventa'],
+    specs: ['10-20 uds: 900 USD', '20-50 uds: 820 USD', '50+ uds: 800 USD'],
     profitSim: { invest: 16400, sell: 24000, profit: 7600 }
   },
   {
     id: 'laptop-corp',
-    name: 'Laptop Empresarial i7',
-    price: 820,
+    name: 'Laptop Empresarial i7 Alta Gama',
+    price: 900,
     suggestedQty: '20-100 unidades',
     category: 'Informática',
     demand: 'Estable',
@@ -45,13 +45,13 @@ const products = [
     complexity: 'Medio',
     recommended: 'Licitaciones / Empresas',
     flag: 'China',
-    specs: ['20-50: 820 USD', '50+: 780 USD', 'Chasis de aluminio'],
-    profitSim: { invest: 16400, sell: 24000, profit: 7600 }
+    specs: ['10-20 uds: 1000 USD', '20-50 uds: 900 USD', '50+ uds: 800 USD'],
+    profitSim: { invest: 18000, sell: 26000, profit: 8000 }
   },
   {
     id: 'ps5',
     name: 'PlayStation 5 Slim o Standard',
-    price: 780,
+    price: 800,
     suggestedQty: '20-50 unidades',
     category: 'Entretenimiento',
     demand: 'Alta',
@@ -60,8 +60,8 @@ const products = [
     complexity: 'Medio',
     recommended: 'Tiendas especializadas',
     flag: 'USA',
-    specs: ['10-20: 850 USD', '20-50: 780 USD', 'Consolas de última generación con alta demanda en Latinoamérica'],
-    profitSim: { invest: 15600, sell: 22000, profit: 6400 }
+    specs: ['10-20 uds: 900 USD', '20-50 uds: 800 USD', '50+ uds: 750 USD'],
+    profitSim: { invest: 16000, sell: 22000, profit: 6000 }
   },
   {
     id: 'xbox',
@@ -75,23 +75,8 @@ const products = [
     complexity: 'Medio',
     recommended: 'Tiendas especializadas',
     flag: 'USA',
-    specs: ['10-20: 800 USD', '20-50: 750 USD', 'Consolas de última generación con alta demanda en Latinoamérica'],
+    specs: ['10-20 uds: 850 USD', '20-50 uds: 750 USD', '50+ uds: 700 USD'],
     profitSim: { invest: 15000, sell: 21000, profit: 6000 }
-  },
-  {
-    id: 'fardos-premium',
-    name: 'Fardos Ropa Premium',
-    price: 350,
-    suggestedQty: 'Lote de 20 fardos',
-    category: 'Textiles',
-    demand: 'Muy Alta',
-    availability: 'Disponible',
-    rotation: 'Muy Alta',
-    complexity: 'Bajo',
-    recommended: 'Boutiques / Mayoristas',
-    flag: 'USA',
-    specs: ['Precio: 350 USD por fardo', 'Selección premium de alta calidad', 'Alta rentabilidad en reventa'],
-    profitSim: { invest: 7000, sell: 15000, profit: 8000 }
   },
   {
     id: 'zapatillas',
@@ -105,57 +90,12 @@ const products = [
     complexity: 'Bajo',
     recommended: 'Tiendas deportivas / Reventa',
     flag: 'China',
-    specs: ['50-100: 85 USD', '100+: 80 USD', 'Calidad premium'],
+    specs: ['10-20 uds: 90 USD', '20-50 uds: 85 USD', '50+ uds: 80 USD'],
     profitSim: { invest: 8000, sell: 15000, profit: 7000 }
   },
   {
-    id: 'auriculares',
-    name: 'Auriculares Inalámbricos',
-    price: 45,
-    suggestedQty: '100-300 unidades',
-    category: 'Accesorios',
-    demand: 'Muy Alta',
-    availability: 'Stock amplio',
-    rotation: 'Muy Alta',
-    complexity: 'Bajo',
-    recommended: 'Kioscos / E-commerce',
-    flag: 'China',
-    specs: ['Precio: 45-60 USD', 'Bluetooth 5.3', 'Cancelación de ruido'],
-    profitSim: { invest: 13500, sell: 25000, profit: 11500 }
-  },
-  {
-    id: 'smartwatches',
-    name: 'Smartwatches',
-    price: 85,
-    suggestedQty: '50-200 unidades',
-    category: 'Accesorios',
-    demand: 'Alta',
-    availability: 'Disponible',
-    rotation: 'Alta',
-    complexity: 'Bajo',
-    recommended: 'Tiendas de tecnología',
-    flag: 'China',
-    specs: ['Precio: 85-110 USD', 'Monitor de salud', 'Resistente al agua'],
-    profitSim: { invest: 17000, sell: 30000, profit: 13000 }
-  },
-  {
-    id: 'accesorios-celular',
-    name: 'Accesorios para Celular',
-    price: 15,
-    suggestedQty: '200-500 unidades',
-    category: 'Accesorios',
-    demand: 'Constante',
-    availability: 'Stock amplio',
-    rotation: 'Muy Alta',
-    complexity: 'Bajo',
-    recommended: 'Mayoristas / Distribuidores',
-    flag: 'China',
-    specs: ['Precio: 15-25 USD', 'Cables, cargadores, fundas', 'Alta rotación'],
-    profitSim: { invest: 7500, sell: 15000, profit: 7500 }
-  },
-  {
     id: 'ropa-deportiva',
-    name: 'Ropa Deportiva',
+    name: 'Ropa Deportiva Alta Calidad',
     price: 35,
     suggestedQty: '100-300 prendas',
     category: 'Textiles',
@@ -165,14 +105,41 @@ const products = [
     complexity: 'Bajo',
     recommended: 'Gimnasios / Tiendas',
     flag: 'China',
-    specs: ['100-300: 40 USD', '300+: 35 USD', 'Línea deportiva premium orientada a reventa'],
+    specs: ['10-20 uds: 40 USD', '20-50 uds: 35 USD', '50+ uds: 25 USD'],
     profitSim: { invest: 10500, sell: 20000, profit: 9500 }
+  },
+  {
+    id: 'accesorios-celular',
+    name: 'Accesorios para Celular Alta Rotación',
+    price: 8,
+    suggestedQty: '200-500 unidades',
+    category: 'Accesorios',
+    demand: 'Constante',
+    availability: 'Stock amplio',
+    rotation: 'Muy Alta',
+    complexity: 'Bajo',
+    recommended: 'Mayoristas / Distribuidores',
+    flag: 'China',
+    specs: ['10-20 uds: 10 USD', '20-50 uds: 8 USD', '50+ uds: 5 USD'],
+    profitSim: { invest: 4000, sell: 10000, profit: 6000 }
   }
 ];
 
 export default function StrategicProducts() {
   const [selectedProduct, setSelectedProduct] = useState(products[0]);
   const [showSummary, setShowSummary] = useState(false);
+  const [quantity, setQuantity] = useState(15);
+
+  const getQuickSuggestions = (productId: string) => {
+    if (productId === 'fardos-premium' || productId === 'ropa-deportiva') return [20, 50, 100, 200];
+    return [10, 20, 50, 100];
+  };
+
+  const unitPrice = selectedProduct.price;
+  const totalInvestment = unitPrice * quantity;
+  const profitMargin = selectedProduct.profitSim.profit / selectedProduct.profitSim.invest;
+  const estimatedResale = totalInvestment * (1 + profitMargin);
+  const estimatedProfit = estimatedResale - totalInvestment;
 
   return (
     <section id="strategic-products" className="py-24 bg-slate-950 border-t border-slate-900">
@@ -303,22 +270,68 @@ export default function StrategicProducts() {
                 </div>
 
                 <div className="mb-8">
-                  <h4 className="text-white font-bold mb-4">Simulación de Ganancia (Ejemplo)</h4>
-                  <div className="bg-gradient-to-r from-slate-950 to-slate-900 border border-slate-800 rounded-xl p-6 flex flex-col md:flex-row items-center justify-between">
-                    <div className="text-center md:text-left mb-4 md:mb-0">
-                      <p className="text-sm text-slate-400">Inversión Total</p>
-                      <p className="text-xl font-bold text-white">${selectedProduct.profitSim.invest.toLocaleString()} USD</p>
+                  <h4 className="text-white font-bold mb-4">Configurar Operación</h4>
+                  <div className="bg-slate-950 p-6 rounded-xl border border-slate-800 mb-4">
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Cantidad a importar (Mínimo 15)</label>
+                    <div className="flex items-center gap-4 mb-4">
+                      <input 
+                        type="number" 
+                        min="15"
+                        value={quantity}
+                        onChange={(e) => setQuantity(Math.max(15, parseInt(e.target.value) || 15))}
+                        className="w-32 px-4 py-3 bg-slate-900 border border-slate-700 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none text-center font-bold text-lg"
+                      />
+                      <span className="text-slate-400">{selectedProduct.id === 'fardos-premium' ? 'fardos' : 'unidades'}</span>
                     </div>
-                    <ArrowRight className="w-5 h-5 text-slate-600 hidden md:block" />
-                    <div className="text-center md:text-left mb-4 md:mb-0">
-                      <p className="text-sm text-slate-400">Venta Estimada</p>
-                      <p className="text-xl font-bold text-white">${selectedProduct.profitSim.sell.toLocaleString()} USD</p>
+                    <div className="flex flex-wrap gap-2">
+                      {getQuickSuggestions(selectedProduct.id).map(qty => (
+                        <button
+                          key={qty}
+                          onClick={() => setQuantity(Math.max(15, qty))}
+                          className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors ${quantity === Math.max(15, qty) ? 'bg-rose-600 text-white' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}`}
+                        >
+                          {qty} {selectedProduct.id === 'fardos-premium' ? 'fardos' : 'unidades'}
+                        </button>
+                      ))}
                     </div>
-                    <ArrowRight className="w-5 h-5 text-slate-600 hidden md:block" />
-                    <div className="text-center md:text-left">
-                      <p className="text-sm text-rose-400 font-bold">Ganancia Neta</p>
-                      <p className="text-2xl font-black text-rose-500">${selectedProduct.profitSim.profit.toLocaleString()} USD</p>
+                    {selectedProduct.id === 'fardos-premium' && (
+                      <p className="text-xs text-rose-400 mt-3 font-medium">
+                        Disponible para operaciones de alto volumen y distribución mayorista
+                      </p>
+                    )}
+                  </div>
+
+                  <h4 className="text-white font-bold mb-4">Resumen de Operación</h4>
+                  <div className="bg-gradient-to-r from-slate-950 to-slate-900 border border-slate-800 rounded-xl p-6 mb-4">
+                    <div className="grid grid-cols-2 gap-4 mb-6 pb-6 border-b border-slate-800/50">
+                      <div>
+                        <p className="text-sm text-slate-400">Precio por unidad</p>
+                        <p className="text-lg font-bold text-white">${unitPrice.toLocaleString('en-US', {maximumFractionDigits: 0})} USD</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-slate-400">Cantidad seleccionada</p>
+                        <p className="text-lg font-bold text-white">{quantity} {selectedProduct.id === 'fardos-premium' ? 'fardos' : 'unidades'}</p>
+                      </div>
                     </div>
+                    <div className="flex flex-col md:flex-row items-center justify-between">
+                      <div className="text-center md:text-left mb-4 md:mb-0">
+                        <p className="text-sm text-slate-400">Inversión Total</p>
+                        <p className="text-xl font-bold text-white">${totalInvestment.toLocaleString('en-US', {maximumFractionDigits: 0})} USD</p>
+                      </div>
+                      <ArrowRight className="w-5 h-5 text-slate-600 hidden md:block" />
+                      <div className="text-center md:text-left mb-4 md:mb-0">
+                        <p className="text-sm text-slate-400">Reventa Estimada</p>
+                        <p className="text-xl font-bold text-white">${estimatedResale.toLocaleString('en-US', {maximumFractionDigits: 0})} USD</p>
+                      </div>
+                      <ArrowRight className="w-5 h-5 text-slate-600 hidden md:block" />
+                      <div className="text-center md:text-left">
+                        <p className="text-sm text-rose-400 font-bold uppercase tracking-wider mb-1">Ganancia Neta</p>
+                        <p className="text-4xl font-black text-rose-500">${estimatedProfit.toLocaleString('en-US', {maximumFractionDigits: 0})} USD</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-indigo-900/20 border border-indigo-500/30 rounded-lg p-3 text-center">
+                    <p className="text-indigo-300 text-sm font-medium">💡 Clientes exitosos invierten entre 15,000 USD y 50,000 USD</p>
                   </div>
                 </div>
 
@@ -359,8 +372,12 @@ export default function StrategicProducts() {
                     <span className="text-white font-bold">{selectedProduct.name}</span>
                   </div>
                   <div className="flex justify-between items-center mb-4 pb-4 border-b border-slate-800">
+                    <span className="text-slate-400">Cantidad</span>
+                    <span className="text-white font-bold">{quantity} {selectedProduct.id === 'fardos-premium' ? 'fardos' : 'unidades'}</span>
+                  </div>
+                  <div className="flex justify-between items-center mb-4 pb-4 border-b border-slate-800">
                     <span className="text-slate-400">Inversión Estimada</span>
-                    <span className="text-white font-bold">${selectedProduct.profitSim.invest.toLocaleString()} USD</span>
+                    <span className="text-white font-bold">${totalInvestment.toLocaleString('en-US', {maximumFractionDigits: 0})} USD</span>
                   </div>
                   <div className="flex justify-between items-center mb-4 pb-4 border-b border-slate-800">
                     <span className="text-slate-400">Desglose de Costos</span>
@@ -368,7 +385,7 @@ export default function StrategicProducts() {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-rose-400 font-bold">Pago Inicial Requerido (50%)</span>
-                    <span className="text-2xl font-black text-rose-500">${(selectedProduct.profitSim.invest / 2).toLocaleString()} USD</span>
+                    <span className="text-2xl font-black text-rose-500">${(totalInvestment / 2).toLocaleString('en-US', {maximumFractionDigits: 0})} USD</span>
                   </div>
                 </div>
 

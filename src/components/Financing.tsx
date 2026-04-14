@@ -11,9 +11,9 @@ export default function Financing() {
     setFormState('submitting');
     setProgress(0);
 
-    // Simulate a thorough 5-7 minute analysis (accelerated for demo purposes to 10 seconds)
-    const totalTime = 10000; 
-    const intervalTime = 100;
+    // Simulate a thorough 5-7 minute analysis
+    const totalTime = 300000; // 5 minutes
+    const intervalTime = 1000; // Update every second
     const steps = totalTime / intervalTime;
     let currentStep = 0;
 

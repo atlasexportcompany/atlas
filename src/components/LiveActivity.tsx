@@ -1,38 +1,49 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Bell, ShoppingBag, Globe, Package } from 'lucide-react';
+import { Bell, ShoppingBag, Globe, Package, CheckCircle2 } from 'lucide-react';
 
 const notifications = [
-  { text: "Eduardo compró un contenedor de fardos", icon: <Package className="w-4 h-4 text-rose-500" />, time: "Hace 2 min" },
-  { text: "María solicitó cotización de 200 celulares", icon: <ShoppingBag className="w-4 h-4 text-rose-500" />, time: "Hace 5 min" },
-  { text: "Cliente en México cotizó televisores Smart TV", icon: <Globe className="w-4 h-4 text-rose-500" />, time: "Hace 12 min" },
-  { text: "Hace 1 semana, Emilia compró 5 televisores para reventa", icon: <ShoppingBag className="w-4 h-4 text-rose-500" />, time: "Historial" },
-  { text: "Hace 3 días, Juan importó ropa premium", icon: <Package className="w-4 h-4 text-rose-500" />, time: "Historial" },
-  { text: "Nuevo proveedor verificado en Shenzhen", icon: <Globe className="w-4 h-4 text-rose-500" />, time: "Hace 1 hora" }
+  { text: "Cliente en México compró televisores", icon: <ShoppingBag className="w-4 h-4 text-rose-500" /> },
+  { text: "Proveedor verificado en Shenzhen", icon: <Globe className="w-4 h-4 text-rose-500" /> },
+  { text: "Operación confirmada en Colombia", icon: <CheckCircle2 className="w-4 h-4 text-rose-500" /> },
+  { text: "Nuevo contenedor consolidado hacia Argentina", icon: <Package className="w-4 h-4 text-rose-500" /> },
+  { text: "Cliente en Chile reservó 50 Laptops i7", icon: <ShoppingBag className="w-4 h-4 text-rose-500" /> },
+  { text: "Lote de consolas PS5 despachado", icon: <Package className="w-4 h-4 text-rose-500" /> }
 ];
 
 export default function LiveActivity() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isVisible, setIsVisible] = useState(true);
+  const [currentNotification, setCurrentNotification] = useState<typeof notifications[0] | null>(null);
 
   useEffect(() => {
-    const cycleInterval = setInterval(() => {
-      setIsVisible(false);
-      
-      setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % notifications.length);
-        setIsVisible(true);
-      }, 500); // Wait for exit animation
-      
-    }, 8000); // Show new notification every 8 seconds
+    let timeoutId: NodeJS.Timeout;
 
-    return () => clearInterval(cycleInterval);
+    const scheduleNextNotification = () => {
+      // Random time between 5 and 7 minutes (300,000 to 420,000 ms)
+      const nextTime = Math.floor(Math.random() * (420000 - 300000 + 1)) + 300000;
+      
+      timeoutId = setTimeout(() => {
+        // Pick a random notification
+        const randomNotif = notifications[Math.floor(Math.random() * notifications.length)];
+        setCurrentNotification(randomNotif);
+
+        // Hide after 8 seconds
+        setTimeout(() => {
+          setCurrentNotification(null);
+          scheduleNextNotification(); // Schedule the next one after hiding
+        }, 8000);
+      }, nextTime);
+    };
+
+    // Initial schedule
+    scheduleNextNotification();
+
+    return () => clearTimeout(timeoutId);
   }, []);
 
   return (
     <div className="fixed bottom-6 right-6 z-50 pointer-events-none">
       <AnimatePresence>
-        {isVisible && (
+        {currentNotification && (
           <motion.div
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -45,11 +56,11 @@ export default function LiveActivity() {
             </div>
             <div>
               <p className="text-sm font-medium text-white leading-snug">
-                {notifications[currentIndex].text}
+                {currentNotification.text}
               </p>
               <div className="flex items-center mt-2 space-x-2">
-                {notifications[currentIndex].icon}
-                <span className="text-xs text-slate-400">{notifications[currentIndex].time}</span>
+                {currentNotification.icon}
+                <span className="text-xs text-slate-400">Hace un momento</span>
               </div>
             </div>
           </motion.div>

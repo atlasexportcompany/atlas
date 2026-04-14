@@ -28,26 +28,26 @@ const productsData = [
   },
   {
     id: 'tv',
-    name: 'Smart TV 55" 4K PREMIUM',
-    cost: { min: 800, max: 820 },
+    name: 'Smart TV 55" 4K UHD Premium',
+    cost: { min: 800, max: 900 },
     resale: { default: { min: 1100, max: 1400, demand: 'Alta' } }
   },
   {
     id: 'laptop',
-    name: 'Laptop Empresarial i7',
-    cost: { min: 780, max: 820 },
-    resale: { default: { min: 1000, max: 1300, demand: 'Alta' } }
+    name: 'Laptop Empresarial i7 Alta Gama',
+    cost: { min: 800, max: 1000 },
+    resale: { default: { min: 1200, max: 1500, demand: 'Alta' } }
   },
   {
     id: 'ps5',
     name: 'PlayStation 5 Slim o Standard',
-    cost: { min: 780, max: 850 },
+    cost: { min: 750, max: 900 },
     resale: { default: { min: 950, max: 1200, demand: 'Muy Alta' } }
   },
   {
     id: 'xbox',
     name: 'Xbox Series X',
-    cost: { min: 750, max: 800 },
+    cost: { min: 700, max: 850 },
     resale: { default: { min: 950, max: 1150, demand: 'Muy Alta' } }
   },
   {
@@ -59,32 +59,20 @@ const productsData = [
   {
     id: 'zapatillas',
     name: 'Zapatillas Deportivas Premium',
-    cost: { min: 80, max: 85 },
+    cost: { min: 80, max: 90 },
     resale: { default: { min: 130, max: 200, demand: 'Alta' } }
   },
   {
-    id: 'auriculares',
-    name: 'Auriculares Inalámbricos',
-    cost: { min: 45, max: 60 },
-    resale: { default: { min: 80, max: 120, demand: 'Muy Alta' } }
-  },
-  {
-    id: 'smartwatch',
-    name: 'Smartwatches',
-    cost: { min: 85, max: 110 },
-    resale: { default: { min: 140, max: 200, demand: 'Alta' } }
+    id: 'ropa-deportiva',
+    name: 'Ropa Deportiva Alta Calidad',
+    cost: { min: 25, max: 40 },
+    resale: { default: { min: 80, max: 140, demand: 'Alta' } }
   },
   {
     id: 'accesorios',
-    name: 'Accesorios Celular',
-    cost: { min: 15, max: 25 },
-    resale: { default: { min: 35, max: 60, demand: 'Constante' } }
-  },
-  {
-    id: 'ropa-deportiva',
-    name: 'Ropa Deportiva',
-    cost: { min: 35, max: 40 },
-    resale: { default: { min: 80, max: 140, demand: 'Alta' } }
+    name: 'Accesorios Celular Alta Rotación',
+    cost: { min: 5, max: 10 },
+    resale: { default: { min: 15, max: 30, demand: 'Constante' } }
   }
 ];
 
@@ -337,41 +325,6 @@ export default function Simulator() {
                       </div>
                     </div>
                   </div>
-
-                  {/* Bloque Final Impacto */}
-                  <div className="bg-rose-600 rounded-3xl p-8 text-center shadow-2xl shadow-rose-900/20">
-                    <h4 className="text-2xl font-bold text-white mb-6">Ejemplo de Escalamiento Automático</h4>
-                    <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-white/90 mb-8 bg-black/20 p-6 rounded-2xl">
-                      <div>
-                        <p className="text-sm uppercase tracking-wider mb-1 opacity-80 font-medium">Invertís</p>
-                        <p className="text-3xl font-black">10,000 USD</p>
-                      </div>
-                      <ArrowRight className="w-8 h-8 hidden md:block opacity-50" />
-                      <div>
-                        <p className="text-sm uppercase tracking-wider mb-1 opacity-80 font-medium">Generás</p>
-                        <p className="text-3xl font-black">18,000 USD</p>
-                      </div>
-                      <ArrowRight className="w-8 h-8 hidden md:block opacity-50" />
-                      <div>
-                        <p className="text-sm uppercase tracking-wider mb-1 text-green-300 font-bold">Ganancia</p>
-                        <p className="text-3xl font-black text-green-300">8,000 USD</p>
-                      </div>
-                    </div>
-                    
-                    <div className="mb-8">
-                      <p className="text-xl font-bold text-white">Esto no es una compra, es una operación de reventa.</p>
-                    </div>
-
-                    <a 
-                      href="https://link.mercadopago.com.ar/camdiaz"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center px-10 py-5 bg-white text-rose-600 rounded-full font-black text-xl hover:bg-slate-100 transition-transform hover:scale-105 shadow-xl"
-                    >
-                      <ShoppingCart className="w-6 h-6 mr-3" />
-                      PAGAR 50% INICIAL
-                    </a>
-                  </div>
                 </motion.div>
               ) : (
                 <motion.div 
@@ -385,7 +338,7 @@ export default function Simulator() {
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-3">Esperando parámetros</h3>
                   <p className="text-slate-400 max-w-md text-lg">
-                    Configura tu operación en el panel izquierdo y haz clic en "Simular Rentabilidad" para ver la proyección de mercado.
+                    Configura tu operación en el panel izquierdo y haz clic en Simular Rentabilidad para ver la proyección de mercado.
                   </p>
                 </motion.div>
               )}
