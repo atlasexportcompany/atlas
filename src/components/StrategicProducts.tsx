@@ -139,47 +139,6 @@ export default function StrategicProducts() {
     setStep((prev) => (prev - 1) as any);
   };
 
-  const handleWhatsAppSubmit = () => {
-    const message = `Hola, ya realicé el pago del 50% para mi operación.
-
-ID: ${operationId}
-Producto: ${product.name}
-Cantidad: ${quantity}
-Monto enviado: ${(totalInvestment / 2).toLocaleString('en-US', {maximumFractionDigits: 0})} USD
-
-Adjunto comprobante.`;
-
-    const whatsappUrl = `https://wa.me/50584510505?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
-    setStep(5);
-  };
-
-  const handleEmailSubmit = () => {
-    const subject = `Comprobante de Pago - Operación ${operationId}`;
-    const body = `Hola, adjunto el comprobante de pago del 50% para mi operación.
-
-Datos del cliente:
-Nombre/Empresa: ${formData.name}
-País: ${formData.country}
-Ciudad/Puerto: ${formData.city}
-Email: ${formData.email}
-WhatsApp: ${formData.whatsapp}
-Tiempo estimado de venta: ${formData.sellingTime}
-
-Datos de la operación:
-ID: ${operationId}
-Producto: ${product.name}
-Cantidad: ${quantity}
-Monto enviado: ${(totalInvestment / 2).toLocaleString('en-US', {maximumFractionDigits: 0})} USD
-Método de pago: ${formData.paymentMethod}
-
-Por favor, confirmar recepción.`;
-
-    const mailtoUrl = `mailto:contacto@atlasexport.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.open(mailtoUrl, '_blank');
-    setStep(5);
-  };
-
   return (
     <section id="strategic-products" className="py-24 bg-slate-950 border-t border-slate-900 min-h-screen flex items-center">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -437,11 +396,19 @@ Por favor, confirmar recepción.`;
                 </div>
 
                 <div className="flex flex-col gap-3">
-                  <button onClick={handleWhatsAppSubmit} className="w-full py-4 bg-[#25D366] text-white rounded-xl font-bold text-lg hover:bg-[#128C7E] transition-colors flex items-center justify-center">
-                    Pagar 50% y Reservar Operación (WhatsApp)
-                  </button>
-                  <button onClick={handleEmailSubmit} className="w-full py-4 bg-slate-800 text-white rounded-xl font-bold text-lg hover:bg-slate-700 transition-colors flex items-center justify-center">
-                    Pagar 50% y Reservar Operación (Email)
+                  <a 
+                    href="https://link.mercadopago.com.ar/camdiaz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-4 bg-[#009EE3] text-white rounded-xl font-bold text-lg hover:bg-[#0080B7] transition-colors flex items-center justify-center"
+                  >
+                    Pagar 50%
+                  </a>
+                  <button 
+                    onClick={() => setStep(5)} 
+                    className="w-full py-4 bg-slate-800 text-white rounded-xl font-bold text-lg hover:bg-slate-700 transition-colors flex items-center justify-center"
+                  >
+                    Ya realicé el pago
                   </button>
                 </div>
               </motion.div>
