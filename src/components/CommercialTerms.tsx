@@ -22,7 +22,7 @@ export default function CommercialTerms() {
               <div className="text-4xl font-black text-rose-500 mb-4">50%</div>
               <h3 className="text-xl font-bold text-white mb-3">Seña Inicial</h3>
               <p className="text-slate-400 mb-6">
-                Para confirmar el pedido y asegurar el producto con el proveedor internacional. Este monto cubre los costos operativos iniciales y la reserva de inventario.
+                Para confirmar la reserva y asegurar el producto con el proveedor internacional. Este monto cubre los costos operativos iniciales y la reserva de inventario.
               </p>
               <ul className="space-y-2">
                 <li className="flex items-center text-sm text-slate-300">

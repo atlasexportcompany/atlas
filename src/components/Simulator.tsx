@@ -145,7 +145,7 @@ export default function Simulator() {
             Proyección de Rentabilidad
           </h2>
           <p className="text-xl text-slate-400 font-medium">
-            Simulación basada en datos reales de mercado internacional.
+            Proyección basada en datos reales de mercado internacional.
           </p>
         </div>
 
@@ -272,7 +272,7 @@ export default function Simulator() {
                     
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 border-b border-slate-800 pb-6 gap-4">
                       <div>
-                        <h3 className="text-2xl font-bold text-white mb-1">Resultados de Simulación</h3>
+                        <h3 className="text-2xl font-bold text-white mb-1">Resultados de Proyección</h3>
                         <p className="text-slate-400 flex items-center">
                           <Globe className="w-4 h-4 mr-1" /> Mercado: {countries.find(c => c.id === selectedCountry)?.name}
                         </p>
@@ -320,7 +320,7 @@ export default function Simulator() {
                         <p className="text-sm text-indigo-200 leading-relaxed">
                           {totalInvestment < 10000 
                             ? "Con una inversión mayor, el costo por unidad disminuye y el margen mejora significativamente. Considera escalar a un contenedor compartido."
-                            : "Basado en tu inversión, podrías mejorar tu rentabilidad aumentando el volumen de compra para acceder a precios de contenedor completo."}
+                            : "Basado en tu inversión, podrías mejorar tu rentabilidad aumentando el volumen de reserva para acceder a precios de contenedor completo."}
                         </p>
                       </div>
                     </div>

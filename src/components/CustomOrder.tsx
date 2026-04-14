@@ -90,7 +90,7 @@ export default function CustomOrder() {
                   </div>
                   <div className="ml-4">
                     <h4 className="text-lg font-semibold text-white mb-1">Negociación Directa</h4>
-                    <p className="text-sm text-slate-400 leading-relaxed">Conseguimos precios de fábrica y negociamos los MOQ (Cantidades Mínimas de Pedido) por ti.</p>
+                    <p className="text-sm text-slate-400 leading-relaxed">Conseguimos precios de fábrica y negociamos los MOQ (Cantidades Mínimas de Reserva) por ti.</p>
                   </div>
                 </li>
                 <li className="flex items-start">

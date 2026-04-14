@@ -26,7 +26,7 @@ export default function HowItWorks() {
     {
       icon: <Ship className="w-6 h-6 text-rose-500" />,
       title: "5. Ejecución logística",
-      description: "Coordinamos compra, inspección de calidad, embarque y trámites de aduana."
+      description: "Coordinamos adquisición, inspección de calidad, embarque y trámites de aduana."
     },
     {
       icon: <CheckCircle2 className="w-6 h-6 text-rose-500" />,

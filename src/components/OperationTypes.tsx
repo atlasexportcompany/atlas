@@ -21,7 +21,7 @@ export default function OperationTypes() {
             </div>
             <h3 className="text-xl font-bold text-white mb-4">Importación de Fardos Textiles</h3>
             <p className="text-slate-400 leading-relaxed mb-6">
-              Coordinamos la compra y envío de fardos de ropa premium desde Norteamérica y Asia. Ideal para distribuidores y mayoristas que buscan volumen y calidad constante con márgenes predecibles.
+              Coordinamos la adquisición y envío de fardos de ropa premium desde Norteamérica y Asia. Ideal para distribuidores y mayoristas que buscan volumen y calidad constante con márgenes predecibles.
             </p>
             <ul className="space-y-2 text-sm text-slate-500">
               <li className="flex items-center"><span className="w-1.5 h-1.5 bg-rose-500 rounded-full mr-2"></span> Volumen alto</li>
@@ -49,7 +49,7 @@ export default function OperationTypes() {
             <div className="w-14 h-14 bg-rose-500/10 rounded-2xl flex items-center justify-center mb-6 border border-rose-500/20">
               <Briefcase className="w-6 h-6 text-rose-500" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-4">Pedidos Personalizados</h3>
+            <h3 className="text-xl font-bold text-white mb-4">Reservas Personalizadas</h3>
             <p className="text-slate-400 leading-relaxed mb-6">
               Búsqueda de maquinaria industrial, insumos específicos o desarrollo de productos marca blanca. Nuestro equipo en origen negocia directamente con los fabricantes para obtener las mejores condiciones.
             </p>

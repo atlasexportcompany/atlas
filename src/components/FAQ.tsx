@@ -17,7 +17,7 @@ const faqs = [
   },
   {
     question: "¿Por qué tengo que pagar 50%?",
-    answer: "El pago inicial cubre costos operativos, compra de mercancía y reserva logística."
+    answer: "El pago inicial cubre costos operativos, adquisición de mercancía y reserva logística."
   },
   {
     question: "Nunca importé",
@@ -25,7 +25,7 @@ const faqs = [
   },
   {
     question: "¿Qué gano yo?",
-    answer: "Nuestros clientes compran a precio mayorista internacional y venden en su mercado con márgenes competitivos."
+    answer: "Nuestros clientes adquieren a precio mayorista internacional y venden en su mercado con márgenes competitivos."
   },
   {
     question: "¿Puedo empezar con poco?",

@@ -50,7 +50,7 @@ export default function SystemStatus() {
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-lg font-bold text-white flex items-center">
                 <CheckCircle2 className="w-5 h-5 text-green-500 mr-2" />
-                Pedidos Recientes
+                Operaciones Recientes
               </h3>
               <span className="bg-green-500/20 text-green-400 text-xs font-bold px-2 py-1 rounded">Hoy: 28</span>
             </div>

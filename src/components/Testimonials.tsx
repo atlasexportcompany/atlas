@@ -4,7 +4,7 @@ const testimonials = [
   {
     name: "Carlos Mendoza",
     role: "Distribuidor mayorista – México",
-    content: "Importé un contenedor de fardos premium (aprox 400 unidades) y la verdad al principio tenía dudas por el tema aduanero. Pero el equipo me fue guiando paso a paso. Vendí casi todo en 3 semanas y ya estoy preparando el segundo pedido.",
+    content: "Importé un contenedor de fardos premium (aprox 400 unidades) y la verdad al principio tenía dudas por el tema aduanero. Pero el equipo me fue guiando paso a paso. Vendí casi todo en 3 semanas y ya estoy preparando la segunda reserva.",
     rating: 5
   },
   {

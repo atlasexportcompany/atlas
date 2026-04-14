@@ -127,8 +127,74 @@ const products = [
 
 export default function StrategicProducts() {
   const [selectedProduct, setSelectedProduct] = useState(products[0]);
-  const [showSummary, setShowSummary] = useState(false);
+  const [step, setStep] = useState<'config' | 'payment' | 'success'>('config');
   const [quantity, setQuantity] = useState(15);
+  const [operationId, setOperationId] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    country: '',
+    email: '',
+    whatsapp: '',
+    paymentMethod: 'Transferencia',
+    receipt: null as File | null
+  });
+
+  const handleWhatsAppSubmit = () => {
+    console.log("Nueva Operación (Sistema Interno):", {
+      ...formData,
+      product: selectedProduct.name,
+      quantity,
+      totalInvestment,
+      paidAmount: totalInvestment / 2,
+      operationId
+    });
+
+    const message = `Hola, ya realicé el pago del 50% para mi operación.
+
+ID: ${operationId}
+Producto: ${selectedProduct.name}
+Cantidad: ${quantity}
+Monto enviado: ${(totalInvestment / 2).toLocaleString('en-US', {maximumFractionDigits: 0})} USD
+
+Adjunto comprobante.`;
+
+    const whatsappUrl = `https://wa.me/50584510505?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+    setStep('success');
+  };
+
+  const handleEmailSubmit = () => {
+    console.log("Nueva Operación (Sistema Interno):", {
+      ...formData,
+      product: selectedProduct.name,
+      quantity,
+      totalInvestment,
+      paidAmount: totalInvestment / 2,
+      operationId
+    });
+
+    const subject = `Comprobante de Pago - Operación ${operationId}`;
+    const body = `Hola, adjunto el comprobante de pago del 50% para mi operación.
+
+Datos del cliente:
+Nombre/Empresa: ${formData.name}
+País: ${formData.country}
+Email: ${formData.email}
+WhatsApp: ${formData.whatsapp}
+
+Datos de la operación:
+ID: ${operationId}
+Producto: ${selectedProduct.name}
+Cantidad: ${quantity}
+Monto enviado: ${(totalInvestment / 2).toLocaleString('en-US', {maximumFractionDigits: 0})} USD
+Método de pago: ${formData.paymentMethod}
+
+Por favor, confirmar recepción.`;
+
+    const mailtoUrl = `mailto:contacto@atlasexport.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(mailtoUrl, '_blank');
+    setStep('success');
+  };
 
   const getQuickSuggestions = (productId: string) => {
     if (productId === 'fardos-premium' || productId === 'ropa-deportiva') return [20, 50, 100, 200];
@@ -196,7 +262,7 @@ export default function StrategicProducts() {
             {products.map((product) => (
               <div 
                 key={product.id}
-                onClick={() => { setSelectedProduct(product); setShowSummary(false); }}
+                onClick={() => { setSelectedProduct(product); setStep('config'); }}
                 className={`p-6 rounded-2xl border cursor-pointer transition-all ${selectedProduct.id === product.id ? 'bg-slate-900 border-rose-500 shadow-lg shadow-rose-900/20' : 'bg-slate-900/50 border-slate-800 hover:border-slate-700'}`}
               >
                 <div className="flex justify-between items-start mb-2">
@@ -214,7 +280,7 @@ export default function StrategicProducts() {
 
           {/* Product Details & Purchase Flow */}
           <div className="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-3xl p-8 relative overflow-hidden">
-            {!showSummary ? (
+            {step === 'config' && (
               <motion.div
                 key="details"
                 initial={{ opacity: 0, x: 20 }}
@@ -224,7 +290,6 @@ export default function StrategicProducts() {
                 <div className="flex justify-between items-start mb-6">
                   <div>
                     <div className="flex items-center space-x-2 mb-2">
-                      <span className="px-2 py-1 bg-rose-500/20 text-rose-400 text-xs font-bold rounded">Operación #A-{Math.floor(Math.random() * 9000) + 1000}</span>
                       <span className="px-2 py-1 bg-orange-500/20 text-orange-400 text-xs font-bold rounded flex items-center"><AlertCircle className="w-3 h-3 mr-1"/> {selectedProduct.availability}</span>
                     </div>
                     <h2 className="text-3xl font-bold text-white mb-2">{selectedProduct.name}</h2>
@@ -335,81 +400,93 @@ export default function StrategicProducts() {
                   </div>
                 </div>
 
-                <div className="mt-auto flex flex-col sm:flex-row gap-4">
+                <div className="mt-auto">
                   <button 
-                    onClick={() => setShowSummary(true)}
-                    className="flex-1 py-4 bg-rose-600 text-white rounded-xl font-bold text-lg hover:bg-rose-700 transition-colors shadow-lg shadow-rose-600/20 flex items-center justify-center"
+                    onClick={() => {
+                      setOperationId(`ATX-2026-${Math.floor(1000 + Math.random() * 9000)}`);
+                      setStep('payment');
+                    }}
+                    className="w-full py-4 bg-rose-600 text-white rounded-xl font-bold text-lg hover:bg-rose-700 transition-colors shadow-lg shadow-rose-600/20 flex flex-col items-center justify-center"
                   >
-                    Confirmar Operación
+                    <span>Reservar operación con 50%</span>
+                    <span className="text-sm font-normal text-rose-200 mt-1">Pago inicial: ${(totalInvestment / 2).toLocaleString('en-US', {maximumFractionDigits: 0})} USD</span>
                   </button>
-                  <a 
-                    href={`https://wa.me/50584510505?text=Hola, quiero cotizar la operación de ${selectedProduct.name}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 py-4 bg-slate-800 text-white rounded-xl font-bold text-lg hover:bg-slate-700 transition-colors flex items-center justify-center"
-                  >
-                    Consultar Asesor
-                  </a>
                 </div>
               </motion.div>
-            ) : (
+            )}
+            {step === 'payment' && (
               <motion.div
-                key="summary"
+                key="payment"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 className="h-full flex flex-col"
               >
                 <div className="flex items-center mb-6">
-                  <button onClick={() => setShowSummary(false)} className="text-slate-400 hover:text-white mr-4">
+                  <button onClick={() => setStep('config')} className="text-slate-400 hover:text-white mr-4">
                     ← Volver
                   </button>
-                  <h2 className="text-2xl font-bold text-white">Resumen de Operación</h2>
+                  <h2 className="text-2xl font-bold text-white">Reserva iniciada</h2>
+                </div>
+                <p className="text-slate-400 mb-6">Para confirmar tu operación, completá el pago del 50% y enviá el comprobante.</p>
+                
+                <div className="bg-slate-950 p-6 rounded-xl border border-slate-800 mb-6">
+                  <p className="text-rose-400 font-bold text-lg mb-1">ID de operación: {operationId}</p>
+                  <p className="text-white font-bold text-xl mb-4">Monto a transferir: ${(totalInvestment / 2).toLocaleString('en-US', {maximumFractionDigits: 0})} USD</p>
+                  
+                  <div className="space-y-4">
+                    <input type="text" placeholder="Nombre completo / Empresa" className="w-full px-4 py-3 bg-slate-900 border border-slate-700 text-white rounded-xl focus:ring-2 focus:ring-rose-500 outline-none" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
+                    <input type="text" placeholder="País" className="w-full px-4 py-3 bg-slate-900 border border-slate-700 text-white rounded-xl focus:ring-2 focus:ring-rose-500 outline-none" value={formData.country} onChange={e => setFormData({...formData, country: e.target.value})} />
+                    <input type="email" placeholder="Email" className="w-full px-4 py-3 bg-slate-900 border border-slate-700 text-white rounded-xl focus:ring-2 focus:ring-rose-500 outline-none" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
+                    <input type="tel" placeholder="WhatsApp" className="w-full px-4 py-3 bg-slate-900 border border-slate-700 text-white rounded-xl focus:ring-2 focus:ring-rose-500 outline-none" value={formData.whatsapp} onChange={e => setFormData({...formData, whatsapp: e.target.value})} />
+                    
+                    <select className="w-full px-4 py-3 bg-slate-900 border border-slate-700 text-white rounded-xl focus:ring-2 focus:ring-rose-500 outline-none" value={formData.paymentMethod} onChange={e => setFormData({...formData, paymentMethod: e.target.value})}>
+                      <option value="Transferencia">Transferencia Bancaria</option>
+                      <option value="Cripto">Criptomonedas (USDT/USDC)</option>
+                      <option value="Otro">Otro método</option>
+                    </select>
+                    
+                    <div className="relative">
+                      <input type="file" id="receipt" className="hidden" onChange={e => setFormData({...formData, receipt: e.target.files?.[0] || null})} accept="image/*,.pdf" />
+                      <label htmlFor="receipt" className="w-full px-4 py-3 bg-slate-900 border border-slate-700 text-slate-300 rounded-xl flex items-center justify-center cursor-pointer hover:bg-slate-800 transition-colors">
+                        {formData.receipt ? formData.receipt.name : 'Subir comprobante (Imagen o PDF)'}
+                      </label>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 mb-8">
-                  <div className="flex justify-between items-center mb-4 pb-4 border-b border-slate-800">
-                    <span className="text-slate-400">Producto</span>
-                    <span className="text-white font-bold">{selectedProduct.name}</span>
-                  </div>
-                  <div className="flex justify-between items-center mb-4 pb-4 border-b border-slate-800">
-                    <span className="text-slate-400">Cantidad</span>
-                    <span className="text-white font-bold">{quantity} {selectedProduct.id === 'fardos-premium' ? 'fardos' : 'unidades'}</span>
-                  </div>
-                  <div className="flex justify-between items-center mb-4 pb-4 border-b border-slate-800">
-                    <span className="text-slate-400">Inversión Estimada</span>
-                    <span className="text-white font-bold">${totalInvestment.toLocaleString('en-US', {maximumFractionDigits: 0})} USD</span>
-                  </div>
-                  <div className="flex justify-between items-center mb-4 pb-4 border-b border-slate-800">
-                    <span className="text-slate-400">Desglose de Costos</span>
-                    <span className="text-slate-300 text-sm">Producto / Envío / Gestión Aduanera</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-rose-400 font-bold">Pago Inicial Requerido (50%)</span>
-                    <span className="text-2xl font-black text-rose-500">${(totalInvestment / 2).toLocaleString('en-US', {maximumFractionDigits: 0})} USD</span>
-                  </div>
+                <div className="flex flex-col gap-3 mb-6">
+                  <button onClick={handleWhatsAppSubmit} className="w-full py-4 bg-[#25D366] text-white rounded-xl font-bold text-lg hover:bg-[#128C7E] transition-colors flex items-center justify-center">
+                    Enviar comprobante por WhatsApp
+                  </button>
+                  <button onClick={handleEmailSubmit} className="w-full py-4 bg-slate-800 text-white rounded-xl font-bold text-lg hover:bg-slate-700 transition-colors flex items-center justify-center">
+                    Enviar comprobante por Email
+                  </button>
                 </div>
 
-                <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4 mb-8 flex items-start">
-                  <ShieldCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" />
-                  <p className="text-sm text-slate-400">
-                    Para iniciar la operación se requiere un pago inicial del 50%. Operación verificada y confidencial. Proveedores auditados.
-                  </p>
-                </div>
+                <p className="text-xs text-slate-500 text-center">
+                  Todas las operaciones son gestionadas desde Nicaragua con acceso directo a proveedores en Asia y USA, garantizando calidad premium y trazabilidad logística.
+                </p>
+              </motion.div>
+            )}
 
-                <div className="mt-auto">
-                  <a 
-                    href="https://link.mercadopago.com.ar/camdiaz"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-4 bg-rose-600 text-white rounded-xl font-bold text-lg hover:bg-rose-700 transition-colors shadow-lg shadow-rose-600/20 flex items-center justify-center group"
-                  >
-                    PAGAR 50% INICIAL
-                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </a>
-                  <p className="text-center text-xs text-slate-500 mt-4">
-                    Serás redirigido a Mercado Pago para un pago seguro.
-                  </p>
+            {step === 'success' && (
+              <motion.div
+                key="success"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="h-full flex flex-col items-center justify-center text-center py-12"
+              >
+                <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mb-6">
+                  <CheckCircle2 className="w-10 h-10 text-green-500" />
                 </div>
+                <h2 className="text-3xl font-bold text-white mb-4">Comprobante recibido</h2>
+                <p className="text-lg text-slate-400 mb-8">
+                  Tu operación está en proceso de validación y preparación logística.
+                </p>
+                <p className="text-slate-500 mb-8">ID de operación: <span className="text-white font-bold">{operationId}</span></p>
+                <button onClick={() => setStep('config')} className="px-8 py-3 bg-slate-800 text-white rounded-xl font-bold hover:bg-slate-700 transition-colors">
+                  Volver al inicio
+                </button>
               </motion.div>
             )}
           </div>

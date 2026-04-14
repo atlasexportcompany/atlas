@@ -81,7 +81,7 @@ export default function SuccessCases() {
                     <span className="text-slate-400 text-sm font-bold">1</span>
                   </div>
                   <div>
-                    <h4 className="text-white font-medium mb-1">Compra Minorista Local</h4>
+                    <h4 className="text-white font-medium mb-1">Operación Minorista Local</h4>
                     <p className="text-slate-400 text-sm">Compraba fardos a importadores locales con márgenes reducidos (15-20%).</p>
                   </div>
                 </div>

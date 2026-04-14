@@ -70,7 +70,7 @@ export default function MarketComparator() {
                 </li>
               </ul>
               <p className="mt-8 text-sm text-slate-400">
-                Ideal para: Electrónica, accesorios, hogar, maquinaria ligera, compras por volumen.
+                Ideal para: Electrónica, accesorios, hogar, maquinaria ligera, operaciones por volumen.
               </p>
             </div>
           </div>
