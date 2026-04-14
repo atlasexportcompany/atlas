@@ -50,6 +50,7 @@ export default function App() {
         <Financing />
         <GlobalLogistics />
         <HowItWorks />
+        <Testimonials />
         <FAQ />
       </main>
       <Footer />
