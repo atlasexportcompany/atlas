@@ -103,14 +103,42 @@ export default function Financing() {
                     </div>
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Experiencia en Importación/Reventa</label>
-                    <select required className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all">
-                      <option value="">Selecciona una opción</option>
-                      <option value="none">Primera importación</option>
-                      <option value="1-3">1 a 3 años operando</option>
-                      <option value="3+">Más de 3 años operando</option>
-                    </select>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">En cuánto tiempo planea vender el producto</label>
+                      <select required className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all">
+                        <option value="">Selecciona una opción</option>
+                        <option value="15">15 días</option>
+                        <option value="30">30 días</option>
+                        <option value="60">60 días</option>
+                        <option value="90">90 días</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Canal de venta</label>
+                      <select required className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all">
+                        <option value="">Selecciona una opción</option>
+                        <option value="redes">Redes sociales</option>
+                        <option value="fisica">Tienda física</option>
+                        <option value="mayorista">Distribución mayorista</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Margen estimado de reventa (%)</label>
+                      <input required type="number" min="1" placeholder="Ej: 30" className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Nivel de experiencia</label>
+                      <select required className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all">
+                        <option value="">Selecciona una opción</option>
+                        <option value="principiante">Principiante</option>
+                        <option value="intermedio">Intermedio</option>
+                        <option value="avanzado">Avanzado</option>
+                      </select>
+                    </div>
                   </div>
 
                   <button type="submit" className="w-full py-4 bg-rose-600 text-white rounded-xl font-bold text-lg hover:bg-rose-700 transition-colors shadow-lg shadow-rose-600/20 flex items-center justify-center mt-8">

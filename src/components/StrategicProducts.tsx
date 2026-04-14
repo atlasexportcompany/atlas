@@ -5,7 +5,7 @@ import { useState } from 'react';
 const products = [
   {
     id: 'iphone-17',
-    name: 'iPhone 17 (Lote OEM)',
+    name: 'Smartphones Gama Alta',
     price: 1050,
     suggestedQty: '20-50 unidades',
     category: 'Tecnología',
@@ -20,18 +20,18 @@ const products = [
   },
   {
     id: 'smart-tv-55',
-    name: 'Smart TV 55" 4K UHD',
-    price: 620,
+    name: 'Smart TV 55" 4K PREMIUM',
+    price: 820,
     suggestedQty: 'Contenedor compartido',
     category: 'Electrónica',
-    demand: 'Alta demanda en eventos globales como el mundial',
+    demand: 'Alta demanda en eventos globales',
     availability: 'Disponible',
     rotation: 'Media',
     complexity: 'Bajo',
     recommended: 'Empresas / Retail',
     flag: 'China',
-    specs: ['20-50: 620 USD', '50+: 580 USD', 'Certificación CE/FCC'],
-    profitSim: { invest: 12400, sell: 18000, profit: 5600 }
+    specs: ['20-50: 820 USD', '50+: 800 USD', 'Alta demanda en eventos deportivos y temporadas globales como el mundial, ideal para reventa'],
+    profitSim: { invest: 16400, sell: 24000, profit: 7600 }
   },
   {
     id: 'laptop-corp',
@@ -49,6 +49,36 @@ const products = [
     profitSim: { invest: 16400, sell: 24000, profit: 7600 }
   },
   {
+    id: 'ps5',
+    name: 'PlayStation 5 Slim o Standard',
+    price: 780,
+    suggestedQty: '20-50 unidades',
+    category: 'Entretenimiento',
+    demand: 'Alta',
+    availability: 'Stock limitado',
+    rotation: 'Media',
+    complexity: 'Medio',
+    recommended: 'Tiendas especializadas',
+    flag: 'USA',
+    specs: ['10-20: 850 USD', '20-50: 780 USD', 'Consolas de última generación con alta demanda en Latinoamérica'],
+    profitSim: { invest: 15600, sell: 22000, profit: 6400 }
+  },
+  {
+    id: 'xbox',
+    name: 'Xbox Series X',
+    price: 750,
+    suggestedQty: '20-50 unidades',
+    category: 'Entretenimiento',
+    demand: 'Alta',
+    availability: 'Stock limitado',
+    rotation: 'Media',
+    complexity: 'Medio',
+    recommended: 'Tiendas especializadas',
+    flag: 'USA',
+    specs: ['10-20: 800 USD', '20-50: 750 USD', 'Consolas de última generación con alta demanda en Latinoamérica'],
+    profitSim: { invest: 15000, sell: 21000, profit: 6000 }
+  },
+  {
     id: 'fardos-premium',
     name: 'Fardos Ropa Premium',
     price: 350,
@@ -60,13 +90,13 @@ const products = [
     complexity: 'Bajo',
     recommended: 'Boutiques / Mayoristas',
     flag: 'USA',
-    specs: ['Precio: 350 USD por fardo', 'Selección premium de alta calidad', 'Marcas reconocidas'],
+    specs: ['Precio: 350 USD por fardo', 'Selección premium de alta calidad', 'Alta rentabilidad en reventa'],
     profitSim: { invest: 7000, sell: 15000, profit: 8000 }
   },
   {
     id: 'zapatillas',
-    name: 'Zapatillas Deportivas',
-    price: 55,
+    name: 'Zapatillas Deportivas Premium',
+    price: 80,
     suggestedQty: '50-100 pares',
     category: 'Calzado',
     demand: 'Alta',
@@ -75,14 +105,14 @@ const products = [
     complexity: 'Bajo',
     recommended: 'Tiendas deportivas / Reventa',
     flag: 'China',
-    specs: ['50-100: 45-70 USD', 'Varios modelos y tallas', 'Calidad AAA'],
-    profitSim: { invest: 5500, sell: 11000, profit: 5500 }
+    specs: ['50-100: 85 USD', '100+: 80 USD', 'Calidad premium'],
+    profitSim: { invest: 8000, sell: 15000, profit: 7000 }
   },
   {
     id: 'auriculares',
     name: 'Auriculares Inalámbricos',
-    price: 12,
-    suggestedQty: '500+ unidades',
+    price: 45,
+    suggestedQty: '100-300 unidades',
     category: 'Accesorios',
     demand: 'Muy Alta',
     availability: 'Stock amplio',
@@ -90,14 +120,14 @@ const products = [
     complexity: 'Bajo',
     recommended: 'Kioscos / E-commerce',
     flag: 'China',
-    specs: ['Precio: 8-15 USD', 'Bluetooth 5.3', 'Cancelación de ruido'],
-    profitSim: { invest: 6000, sell: 15000, profit: 9000 }
+    specs: ['Precio: 45-60 USD', 'Bluetooth 5.3', 'Cancelación de ruido'],
+    profitSim: { invest: 13500, sell: 25000, profit: 11500 }
   },
   {
     id: 'smartwatches',
     name: 'Smartwatches',
-    price: 30,
-    suggestedQty: '200+ unidades',
+    price: 85,
+    suggestedQty: '50-200 unidades',
     category: 'Accesorios',
     demand: 'Alta',
     availability: 'Disponible',
@@ -105,14 +135,14 @@ const products = [
     complexity: 'Bajo',
     recommended: 'Tiendas de tecnología',
     flag: 'China',
-    specs: ['Precio: 20-45 USD', 'Monitor de salud', 'Resistente al agua'],
-    profitSim: { invest: 6000, sell: 12000, profit: 6000 }
+    specs: ['Precio: 85-110 USD', 'Monitor de salud', 'Resistente al agua'],
+    profitSim: { invest: 17000, sell: 30000, profit: 13000 }
   },
   {
     id: 'accesorios-celular',
     name: 'Accesorios para Celular',
-    price: 3,
-    suggestedQty: '2000+ unidades',
+    price: 15,
+    suggestedQty: '200-500 unidades',
     category: 'Accesorios',
     demand: 'Constante',
     availability: 'Stock amplio',
@@ -120,14 +150,14 @@ const products = [
     complexity: 'Bajo',
     recommended: 'Mayoristas / Distribuidores',
     flag: 'China',
-    specs: ['Precio: 2-5 USD', 'Cables, cargadores, fundas', 'Alta rotación'],
-    profitSim: { invest: 6000, sell: 18000, profit: 12000 }
+    specs: ['Precio: 15-25 USD', 'Cables, cargadores, fundas', 'Alta rotación'],
+    profitSim: { invest: 7500, sell: 15000, profit: 7500 }
   },
   {
     id: 'ropa-deportiva',
     name: 'Ropa Deportiva',
-    price: 12,
-    suggestedQty: '500+ prendas',
+    price: 35,
+    suggestedQty: '100-300 prendas',
     category: 'Textiles',
     demand: 'Alta',
     availability: 'Disponible',
@@ -135,23 +165,8 @@ const products = [
     complexity: 'Bajo',
     recommended: 'Gimnasios / Tiendas',
     flag: 'China',
-    specs: ['Precio: 8-18 USD', 'Telas transpirables', 'Diseños modernos'],
-    profitSim: { invest: 6000, sell: 15000, profit: 9000 }
-  },
-  {
-    id: 'consolas',
-    name: 'Consolas de Videojuegos',
-    price: 380,
-    suggestedQty: '20-50 unidades',
-    category: 'Entretenimiento',
-    demand: 'Alta',
-    availability: 'Stock limitado',
-    rotation: 'Media',
-    complexity: 'Medio',
-    recommended: 'Tiendas especializadas',
-    flag: 'USA',
-    specs: ['Precio: 300-450 USD', 'Última generación', 'Garantía oficial'],
-    profitSim: { invest: 7600, sell: 11000, profit: 3400 }
+    specs: ['100-300: 40 USD', '300+: 35 USD', 'Línea deportiva premium orientada a reventa'],
+    profitSim: { invest: 10500, sell: 20000, profit: 9500 }
   }
 ];
 
@@ -162,7 +177,7 @@ export default function StrategicProducts() {
   return (
     <section id="strategic-products" className="py-24 bg-slate-950 border-t border-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -177,6 +192,12 @@ export default function StrategicProducts() {
           </h2>
           <p className="text-xl text-slate-400">
             Operaciones mayoristas verificadas con alta rentabilidad. Inversión mínima requerida: 5,000 USD.
+          </p>
+        </div>
+        
+        <div className="text-center mb-12">
+          <p className="inline-block px-6 py-3 bg-slate-900 border border-slate-800 rounded-xl text-rose-400 font-bold shadow-lg">
+            Productos seleccionados de calidad premium para reventa profesional
           </p>
         </div>
 
@@ -257,6 +278,9 @@ export default function StrategicProducts() {
                       </span>
                     ))}
                   </div>
+                  <p className="text-xs text-slate-500 mt-3 italic">
+                    * Precios mayoristas internacionales sujetos a volumen y disponibilidad
+                  </p>
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">

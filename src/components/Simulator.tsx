@@ -3,11 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Calculator, Globe, Package, TrendingUp, Info, CheckCircle2, ArrowRight, Loader2, ShoppingCart } from 'lucide-react';
 
 const countries = [
-  { id: 'AR', name: 'Argentina' },
-  { id: 'MX', name: 'México' },
-  { id: 'CO', name: 'Colombia' },
-  { id: 'CL', name: 'Chile' },
-  { id: 'CA', name: 'Centroamérica' },
+  { id: 'AF', name: 'Afganistán' }, { id: 'AL', name: 'Albania' }, { id: 'DE', name: 'Alemania' }, { id: 'AD', name: 'Andorra' }, { id: 'AO', name: 'Angola' }, { id: 'AG', name: 'Antigua y Barbuda' }, { id: 'SA', name: 'Arabia Saudita' }, { id: 'DZ', name: 'Argelia' }, { id: 'AR', name: 'Argentina' }, { id: 'AM', name: 'Armenia' }, { id: 'AU', name: 'Australia' }, { id: 'AT', name: 'Austria' }, { id: 'AZ', name: 'Azerbaiyán' }, { id: 'BS', name: 'Bahamas' }, { id: 'BD', name: 'Bangladés' }, { id: 'BB', name: 'Barbados' }, { id: 'BH', name: 'Baréin' }, { id: 'BE', name: 'Bélgica' }, { id: 'BZ', name: 'Belice' }, { id: 'BJ', name: 'Benín' }, { id: 'BY', name: 'Bielorrusia' }, { id: 'MM', name: 'Birmania' }, { id: 'BO', name: 'Bolivia' }, { id: 'BA', name: 'Bosnia y Herzegovina' }, { id: 'BW', name: 'Botsuana' }, { id: 'BR', name: 'Brasil' }, { id: 'BN', name: 'Brunéi' }, { id: 'BG', name: 'Bulgaria' }, { id: 'BF', name: 'Burkina Faso' }, { id: 'BI', name: 'Burundi' }, { id: 'BT', name: 'Bután' }, { id: 'CV', name: 'Cabo Verde' }, { id: 'KH', name: 'Camboya' }, { id: 'CM', name: 'Camerún' }, { id: 'CA', name: 'Canadá' }, { id: 'QA', name: 'Catar' }, { id: 'TD', name: 'Chad' }, { id: 'CL', name: 'Chile' }, { id: 'CN', name: 'China' }, { id: 'CY', name: 'Chipre' }, { id: 'VA', name: 'Ciudad del Vaticano' }, { id: 'CO', name: 'Colombia' }, { id: 'KM', name: 'Comoras' }, { id: 'KP', name: 'Corea del Norte' }, { id: 'KR', name: 'Corea del Sur' }, { id: 'CI', name: 'Costa de Marfil' }, { id: 'CR', name: 'Costa Rica' }, { id: 'HR', name: 'Croacia' }, { id: 'CU', name: 'Cuba' }, { id: 'DK', name: 'Dinamarca' }, { id: 'DM', name: 'Dominica' }, { id: 'EC', name: 'Ecuador' }, { id: 'EG', name: 'Egipto' }, { id: 'SV', name: 'El Salvador' }, { id: 'AE', name: 'Emiratos Árabes Unidos' }, { id: 'ER', name: 'Eritrea' }, { id: 'SK', name: 'Eslovaquia' }, { id: 'SI', name: 'Eslovenia' }, { id: 'ES', name: 'España' }, { id: 'US', name: 'Estados Unidos' }, { id: 'EE', name: 'Estonia' }, { id: 'ET', name: 'Etiopía' }, { id: 'PH', name: 'Filipinas' }, { id: 'FI', name: 'Finlandia' }, { id: 'FJ', name: 'Fiyi' }, { id: 'FR', name: 'Francia' }, { id: 'GA', name: 'Gabón' }, { id: 'GM', name: 'Gambia' }, { id: 'GE', name: 'Georgia' }, { id: 'GH', name: 'Ghana' }, { id: 'GD', name: 'Granada' }, { id: 'GR', name: 'Grecia' }, { id: 'GT', name: 'Guatemala' }, { id: 'GY', name: 'Guyana' }, { id: 'GN', name: 'Guinea' }, { id: 'GQ', name: 'Guinea Ecuatorial' }, { id: 'GW', name: 'Guinea-Bisáu' }, { id: 'HT', name: 'Haití' }, { id: 'HN', name: 'Honduras' }, { id: 'HU', name: 'Hungría' }, { id: 'IN', name: 'India' }, { id: 'ID', name: 'Indonesia' }, { id: 'IQ', name: 'Irak' }, { id: 'IR', name: 'Irán' }, { id: 'IE', name: 'Irlanda' }, { id: 'IS', name: 'Islandia' }, { id: 'MH', name: 'Islas Marshall' }, { id: 'SB', name: 'Islas Salomón' }, { id: 'IL', name: 'Israel' }, { id: 'IT', name: 'Italia' }, { id: 'JM', name: 'Jamaica' }, { id: 'JP', name: 'Japón' }, { id: 'JO', name: 'Jordania' }, { id: 'KZ', name: 'Kazajistán' }, { id: 'KE', name: 'Kenia' }, { id: 'KG', name: 'Kirguistán' }, { id: 'KI', name: 'Kiribati' }, { id: 'KW', name: 'Kuwait' }, { id: 'LA', name: 'Laos' }, { id: 'LS', name: 'Lesoto' }, { id: 'LV', name: 'Letonia' }, { id: 'LB', name: 'Líbano' }, { id: 'LR', name: 'Liberia' }, { id: 'LY', name: 'Libia' }, { id: 'LI', name: 'Liechtenstein' }, { id: 'LT', name: 'Lituania' }, { id: 'LU', name: 'Luxemburgo' }, { id: 'MK', name: 'Macedonia del Norte' }, { id: 'MG', name: 'Madagascar' }, { id: 'MY', name: 'Malasia' }, { id: 'MW', name: 'Malaui' }, { id: 'MV', name: 'Maldivas' }, { id: 'ML', name: 'Malí' }, { id: 'MT', name: 'Malta' }, { id: 'MA', name: 'Marruecos' }, { id: 'MU', name: 'Mauricio' }, { id: 'MR', name: 'Mauritania' }, { id: 'MX', name: 'México' }, { id: 'FM', name: 'Micronesia' }, { id: 'MD', name: 'Moldavia' }, { id: 'MC', name: 'Mónaco' }, { id: 'MN', name: 'Mongolia' }, { id: 'ME', name: 'Montenegro' }, { id: 'MZ', name: 'Mozambique' }, { id: 'NA', name: 'Namibia' }, { id: 'NR', name: 'Nauru' }, { id: 'NP', name: 'Nepal' }, { id: 'NI', name: 'Nicaragua' }, { id: 'NE', name: 'Níger' }, { id: 'NG', name: 'Nigeria' }, { id: 'NO', name: 'Noruega' }, { id: 'NZ', name: 'Nueva Zelanda' }, { id: 'OM', name: 'Omán' }, { id: 'NL', name: 'Países Bajos' }, { id: 'PK', name: 'Pakistán' }, { id: 'PW', name: 'Palaos' }, { id: 'PA', name: 'Panamá' }, { id: 'PG', name: 'Papúa Nueva Guinea' }, { id: 'PY', name: 'Paraguay' }, { id: 'PE', name: 'Perú' }, { id: 'PL', name: 'Polonia' }, { id: 'PT', name: 'Portugal' }, { id: 'GB', name: 'Reino Unido' }, { id: 'CF', name: 'República Centroafricana' }, { id: 'CZ', name: 'República Checa' }, { id: 'CG', name: 'República del Congo' }, { id: 'CD', name: 'República Democrática del Congo' }, { id: 'DO', name: 'República Dominicana' }, { id: 'RW', name: 'Ruanda' }, { id: 'RO', name: 'Rumania' }, { id: 'RU', name: 'Rusia' }, { id: 'WS', name: 'Samoa' }, { id: 'KN', name: 'San Cristóbal y Nieves' }, { id: 'SM', name: 'San Marino' }, { id: 'VC', name: 'San Vicente y las Granadinas' }, { id: 'LC', name: 'Santa Lucía' }, { id: 'ST', name: 'Santo Tomé y Príncipe' }, { id: 'SN', name: 'Senegal' }, { id: 'RS', name: 'Serbia' }, { id: 'SC', name: 'Seychelles' }, { id: 'SL', name: 'Sierra Leona' }, { id: 'SG', name: 'Singapur' }, { id: 'SY', name: 'Siria' }, { id: 'SO', name: 'Somalia' }, { id: 'LK', name: 'Sri Lanka' }, { id: 'SZ', name: 'Suazilandia' }, { id: 'ZA', name: 'Sudáfrica' }, { id: 'SD', name: 'Sudán' }, { id: 'SS', name: 'Sudán del Sur' }, { id: 'SE', name: 'Suecia' }, { id: 'CH', name: 'Suiza' }, { id: 'SR', name: 'Surinam' }, { id: 'TH', name: 'Tailandia' }, { id: 'TZ', name: 'Tanzania' }, { id: 'TJ', name: 'Tayikistán' }, { id: 'TL', name: 'Timor Oriental' }, { id: 'TG', name: 'Togo' }, { id: 'TO', name: 'Tonga' }, { id: 'TT', name: 'Trinidad y Tobago' }, { id: 'TN', name: 'Túnez' }, { id: 'TM', name: 'Turkmenistán' }, { id: 'TR', name: 'Turquía' }, { id: 'TV', name: 'Tuvalu' }, { id: 'UA', name: 'Ucrania' }, { id: 'UG', name: 'Uganda' }, { id: 'UY', name: 'Uruguay' }, { id: 'UZ', name: 'Uzbekistán' }, { id: 'VU', name: 'Vanuatu' }, { id: 'VE', name: 'Venezuela' }, { id: 'VN', name: 'Vietnam' }, { id: 'YE', name: 'Yemen' }, { id: 'DJ', name: 'Yibuti' }, { id: 'ZM', name: 'Zambia' }, { id: 'ZW', name: 'Zimbabue' }
 ];
 
 const operationTypes = [
@@ -32,21 +28,27 @@ const productsData = [
   },
   {
     id: 'tv',
-    name: 'Smart TV 55" 4K',
-    cost: { min: 780, max: 820 },
-    resale: { default: { min: 1000, max: 1300, demand: 'Alta' } }
+    name: 'Smart TV 55" 4K PREMIUM',
+    cost: { min: 800, max: 820 },
+    resale: { default: { min: 1100, max: 1400, demand: 'Alta' } }
   },
   {
     id: 'laptop',
-    name: 'Laptop i7',
+    name: 'Laptop Empresarial i7',
     cost: { min: 780, max: 820 },
     resale: { default: { min: 1000, max: 1300, demand: 'Alta' } }
   },
   {
-    id: 'consolas',
-    name: 'Consolas de Videojuegos',
-    cost: { min: 670, max: 720 },
-    resale: { default: { min: 900, max: 1100, demand: 'Muy Alta' } }
+    id: 'ps5',
+    name: 'PlayStation 5 Slim o Standard',
+    cost: { min: 780, max: 850 },
+    resale: { default: { min: 950, max: 1200, demand: 'Muy Alta' } }
+  },
+  {
+    id: 'xbox',
+    name: 'Xbox Series X',
+    cost: { min: 750, max: 800 },
+    resale: { default: { min: 950, max: 1150, demand: 'Muy Alta' } }
   },
   {
     id: 'fardos',
@@ -56,32 +58,32 @@ const productsData = [
   },
   {
     id: 'zapatillas',
-    name: 'Zapatillas Deportivas',
-    cost: { min: 70, max: 80 },
+    name: 'Zapatillas Deportivas Premium',
+    cost: { min: 80, max: 85 },
     resale: { default: { min: 130, max: 200, demand: 'Alta' } }
   },
   {
     id: 'auriculares',
     name: 'Auriculares Inalámbricos',
-    cost: { min: 15, max: 22 },
-    resale: { default: { min: 40, max: 70, demand: 'Muy Alta' } }
+    cost: { min: 45, max: 60 },
+    resale: { default: { min: 80, max: 120, demand: 'Muy Alta' } }
   },
   {
     id: 'smartwatch',
     name: 'Smartwatches',
-    cost: { min: 35, max: 60 },
-    resale: { default: { min: 80, max: 150, demand: 'Alta' } }
+    cost: { min: 85, max: 110 },
+    resale: { default: { min: 140, max: 200, demand: 'Alta' } }
   },
   {
     id: 'accesorios',
     name: 'Accesorios Celular',
-    cost: { min: 4, max: 8 },
-    resale: { default: { min: 10, max: 25, demand: 'Constante' } }
+    cost: { min: 15, max: 25 },
+    resale: { default: { min: 35, max: 60, demand: 'Constante' } }
   },
   {
     id: 'ropa-deportiva',
     name: 'Ropa Deportiva',
-    cost: { min: 35, max: 55 },
+    cost: { min: 35, max: 40 },
     resale: { default: { min: 80, max: 140, demand: 'Alta' } }
   }
 ];
@@ -89,6 +91,7 @@ const productsData = [
 export default function Simulator() {
   const [selectedProduct, setSelectedProduct] = useState(productsData[0].id);
   const [selectedCountry, setSelectedCountry] = useState('AR');
+  const [countrySearch, setCountrySearch] = useState('Argentina');
   const [operationType, setOperationType] = useState('lote');
   const [quantity, setQuantity] = useState<number>(50);
   
@@ -181,13 +184,23 @@ export default function Simulator() {
 
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">País de Venta (Destino)</label>
-                  <select 
-                    value={selectedCountry}
-                    onChange={(e) => setSelectedCountry(e.target.value)}
+                  <input 
+                    list="countries-list"
+                    placeholder="Buscar país..."
+                    value={countrySearch}
+                    onChange={(e) => {
+                      setCountrySearch(e.target.value);
+                      const country = countries.find(c => c.name === e.target.value);
+                      if (country) setSelectedCountry(country.id);
+                    }}
                     className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all"
-                  >
-                    {countries.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
-                  </select>
+                  />
+                  <datalist id="countries-list">
+                    {countries.map(c => <option key={c.id} value={c.name} />)}
+                  </datalist>
+                  <p className="text-xs text-slate-500 mt-2">
+                    Operamos en más de 180 países con logística internacional adaptada a cada mercado
+                  </p>
                 </div>
 
                 <div>
