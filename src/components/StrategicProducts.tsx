@@ -3,7 +3,7 @@ import { Package, Globe, TrendingUp, CheckCircle2, ShieldCheck, Loader2 } from '
 import { useState } from 'react';
 
 const countries = [
-  { id: 'AR', name: 'Argentina' }, { id: 'MX', name: 'México' }, { id: 'CO', name: 'Colombia' }, { id: 'CL', name: 'Chile' }, { id: 'PE', name: 'Perú' }, { id: 'ES', name: 'España' }, { id: 'US', name: 'Estados Unidos' }
+  "Afganistán", "Albania", "Alemania", "Andorra", "Angola", "Antigua y Barbuda", "Arabia Saudita", "Argelia", "Argentina", "Armenia", "Australia", "Austria", "Azerbaiyán", "Bahamas", "Bangladés", "Barbados", "Baréin", "Bélgica", "Belice", "Benín", "Bielorrusia", "Birmania", "Bolivia", "Bosnia y Herzegovina", "Botsuana", "Brasil", "Brunéi", "Bulgaria", "Burkina Faso", "Burundi", "Bután", "Cabo Verde", "Camboya", "Camerún", "Canadá", "Catar", "Chad", "Chile", "China", "Chipre", "Ciudad del Vaticano", "Colombia", "Comoras", "Corea del Norte", "Corea del Sur", "Costa de Marfil", "Costa Rica", "Croacia", "Cuba", "Dinamarca", "Dominica", "Ecuador", "Egipto", "El Salvador", "Emiratos Árabes Unidos", "Eritrea", "Eslovaquia", "Eslovenia", "España", "Estados Unidos", "Estonia", "Etiopía", "Filipinas", "Finlandia", "Fiyi", "Francia", "Gabón", "Gambia", "Georgia", "Ghana", "Granada", "Grecia", "Guatemala", "Guyana", "Guinea", "Guinea Ecuatorial", "Guinea-Bisáu", "Haití", "Honduras", "Hungría", "India", "Indonesia", "Irak", "Irán", "Irlanda", "Islandia", "Islas Marshall", "Islas Salomón", "Israel", "Italia", "Jamaica", "Japón", "Jordania", "Kazajistán", "Kenia", "Kirguistán", "Kiribati", "Kuwait", "Laos", "Lesoto", "Letonia", "Líbano", "Liberia", "Libia", "Liechtenstein", "Lituania", "Luxemburgo", "Macedonia del Norte", "Madagascar", "Malasia", "Malaui", "Maldivas", "Malí", "Malta", "Marruecos", "Mauricio", "Mauritania", "México", "Micronesia", "Moldavia", "Mónaco", "Mongolia", "Montenegro", "Mozambique", "Namibia", "Nauru", "Nepal", "Nicaragua", "Níger", "Nigeria", "Noruega", "Nueva Zelanda", "Omán", "Países Bajos", "Pakistán", "Palaos", "Panamá", "Papúa Nueva Guinea", "Paraguay", "Perú", "Polonia", "Portugal", "Reino Unido", "República Centroafricana", "República Checa", "República del Congo", "República Democrática del Congo", "República Dominicana", "Ruanda", "Rumania", "Rusia", "Samoa", "San Cristóbal y Nieves", "San Marino", "San Vicente y las Granadinas", "Santa Lucía", "Santo Tomé y Príncipe", "Senegal", "Serbia", "Seychelles", "Sierra Leona", "Singapur", "Siria", "Somalia", "Sri Lanka", "Suazilandia", "Sudáfrica", "Sudán", "Sudán del Sur", "Suecia", "Suiza", "Surinam", "Tailandia", "Tanzania", "Tayikistán", "Timor Oriental", "Togo", "Tonga", "Trinidad y Tobago", "Túnez", "Turkmenistán", "Turquía", "Tuvalu", "Ucrania", "Uganda", "Uruguay", "Uzbekistán", "Vanuatu", "Venezuela", "Vietnam", "Yemen", "Yibuti", "Zambia", "Zimbabue"
 ];
 
 const operationTypes = [
@@ -99,7 +99,7 @@ export default function StrategicProducts() {
   const [step, setStep] = useState<1 | 2 | 3 | 4 | 5>(1);
   
   const [selectedProduct, setSelectedProduct] = useState(products[0].id);
-  const [selectedCountry, setSelectedCountry] = useState('AR');
+  const [selectedCountry, setSelectedCountry] = useState('');
   const [operationType, setOperationType] = useState('lote');
   const [quantity, setQuantity] = useState(50);
   
@@ -266,13 +266,16 @@ Por favor, confirmar recepción.`;
 
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">País Destino</label>
-                  <select 
+                  <input 
+                    list="countries-list"
                     value={selectedCountry}
                     onChange={(e) => setSelectedCountry(e.target.value)}
+                    placeholder="Seleccioná o escribí tu país de destino"
                     className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 outline-none transition-all"
-                  >
-                    {countries.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
-                  </select>
+                  />
+                  <datalist id="countries-list">
+                    {countries.map(c => <option key={c} value={c} />)}
+                  </datalist>
                 </div>
 
                 <div>
@@ -303,7 +306,8 @@ Por favor, confirmar recepción.`;
 
                 <button 
                   onClick={handleNext}
-                  className="w-full py-4 bg-rose-600 text-white rounded-xl font-bold text-lg hover:bg-rose-700 transition-colors shadow-lg shadow-rose-600/20 mt-8"
+                  disabled={!selectedCountry}
+                  className="w-full py-4 bg-rose-600 text-white rounded-xl font-bold text-lg hover:bg-rose-700 transition-colors shadow-lg shadow-rose-600/20 mt-8 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Continuar
                 </button>
