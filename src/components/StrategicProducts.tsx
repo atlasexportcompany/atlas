@@ -176,12 +176,12 @@ export default function StrategicProducts() {
   };
 
   const handleWhatsAppSubmit = () => {
-    const message = `Hola, ya realicé el pago del 50% para mi operación.
+    const message = `Hola, ya realicé el pago del 50% de mi operación.
 
 ID: ${operationId}
 Producto: ${product.name}
 Cantidad: ${quantity}
-Monto enviado: ${(totalInvestment / 2).toLocaleString('en-US', {maximumFractionDigits: 0})} USD
+Monto: ${(totalInvestment / 2).toLocaleString('en-US', {maximumFractionDigits: 0})} USD
 
 Adjunto comprobante.`;
 
