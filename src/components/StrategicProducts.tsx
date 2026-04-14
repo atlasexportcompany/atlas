@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { Package, Globe, TrendingUp, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { Package, Globe, TrendingUp, CheckCircle2, ShieldCheck, Loader2 } from 'lucide-react';
 import { useState } from 'react';
 
 const countries = [
@@ -115,6 +115,11 @@ export default function StrategicProducts() {
   });
 
   const [operationId, setOperationId] = useState('');
+  
+  const [isValidating, setIsValidating] = useState(false);
+  const [validationProgress, setValidationProgress] = useState(0);
+  const [validationText, setValidationText] = useState('Verificando transacción...');
+  const [isValidated, setIsValidated] = useState(false);
 
   const product = products.find(p => p.id === selectedProduct)!;
   
@@ -137,6 +142,76 @@ export default function StrategicProducts() {
 
   const handleBack = () => {
     setStep((prev) => (prev - 1) as any);
+  };
+
+  const handleStartValidation = () => {
+    setStep(5);
+    setIsValidating(true);
+    setValidationProgress(0);
+    setIsValidated(false);
+    setValidationText('Verificando transacción...');
+
+    const totalTime = 6000; // 6 seconds
+    const intervalTime = 100;
+    const steps = totalTime / intervalTime;
+    let currentStep = 0;
+
+    const interval = setInterval(() => {
+      currentStep++;
+      const progress = (currentStep / steps) * 100;
+      setValidationProgress(progress);
+
+      if (progress > 30 && progress < 60) {
+        setValidationText('Validando datos...');
+      } else if (progress >= 60 && progress < 100) {
+        setValidationText('Confirmando operación...');
+      }
+
+      if (progress >= 100) {
+        clearInterval(interval);
+        setIsValidating(false);
+        setIsValidated(true);
+      }
+    }, intervalTime);
+  };
+
+  const handleWhatsAppSubmit = () => {
+    const message = `Hola, ya realicé el pago del 50% para mi operación.
+
+ID: ${operationId}
+Producto: ${product.name}
+Cantidad: ${quantity}
+Monto enviado: ${(totalInvestment / 2).toLocaleString('en-US', {maximumFractionDigits: 0})} USD
+
+Adjunto comprobante.`;
+
+    const whatsappUrl = `https://wa.me/50584510505?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  const handleEmailSubmit = () => {
+    const subject = `Comprobante de Pago - Operación ${operationId}`;
+    const body = `Hola, adjunto el comprobante de pago del 50% para mi operación.
+
+Datos del cliente:
+Nombre/Empresa: ${formData.name}
+País: ${formData.country}
+Ciudad/Puerto: ${formData.city}
+Email: ${formData.email}
+WhatsApp: ${formData.whatsapp}
+Tiempo estimado de venta: ${formData.sellingTime}
+
+Datos de la operación:
+ID: ${operationId}
+Producto: ${product.name}
+Cantidad: ${quantity}
+Monto enviado: ${(totalInvestment / 2).toLocaleString('en-US', {maximumFractionDigits: 0})} USD
+Método de pago: ${formData.paymentMethod}
+
+Por favor, confirmar recepción.`;
+
+    const mailtoUrl = `mailto:contacto@atlasexport.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(mailtoUrl, '_blank');
   };
 
   return (
@@ -379,22 +454,6 @@ export default function StrategicProducts() {
                   </p>
                 </div>
 
-                <div className="space-y-4 mb-6">
-                  <label className="block text-sm font-medium text-slate-300">Método de Pago</label>
-                  <select className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 outline-none" value={formData.paymentMethod} onChange={e => setFormData({...formData, paymentMethod: e.target.value})}>
-                    <option value="Transferencia">Transferencia Bancaria</option>
-                    <option value="Cripto">Criptomonedas (USDT/USDC)</option>
-                    <option value="Otro">Otro método</option>
-                  </select>
-                  
-                  <div className="relative">
-                    <input type="file" id="receipt" className="hidden" onChange={e => setFormData({...formData, receipt: e.target.files?.[0] || null})} accept="image/*,.pdf" />
-                    <label htmlFor="receipt" className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-slate-300 rounded-xl flex items-center justify-center cursor-pointer hover:bg-slate-800 transition-colors">
-                      {formData.receipt ? formData.receipt.name : 'Subir comprobante (Imagen o PDF)'}
-                    </label>
-                  </div>
-                </div>
-
                 <div className="flex flex-col gap-3">
                   <a 
                     href="https://link.mercadopago.com.ar/camdiaz"
@@ -405,7 +464,7 @@ export default function StrategicProducts() {
                     Pagar 50%
                   </a>
                   <button 
-                    onClick={() => setStep(5)} 
+                    onClick={handleStartValidation} 
                     className="w-full py-4 bg-slate-800 text-white rounded-xl font-bold text-lg hover:bg-slate-700 transition-colors flex items-center justify-center"
                   >
                     Ya realicé el pago
@@ -416,22 +475,55 @@ export default function StrategicProducts() {
 
             {step === 5 && (
               <motion.div
-                key="success"
+                key="validation"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 className="text-center py-12"
               >
-                <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <CheckCircle2 className="w-10 h-10 text-green-500" />
-                </div>
-                <h2 className="text-3xl font-bold text-white mb-4">Comprobante recibido</h2>
-                <p className="text-lg text-slate-400 mb-8">
-                  Tu operación está en proceso de validación y preparación logística.
-                </p>
-                <p className="text-slate-500 mb-8">ID de operación: <span className="text-white font-bold">{operationId}</span></p>
-                <button onClick={() => setStep(1)} className="px-8 py-3 bg-slate-800 text-white rounded-xl font-bold hover:bg-slate-700 transition-colors">
-                  Iniciar nueva operación
-                </button>
+                {isValidating ? (
+                  <div className="flex flex-col items-center justify-center">
+                    <Loader2 className="w-16 h-16 text-rose-500 animate-spin mb-6" />
+                    <h2 className="text-3xl font-bold text-white mb-2">Validando pago</h2>
+                    <p className="text-slate-400 mb-8">{validationText}</p>
+                    
+                    <div className="w-full max-w-md bg-slate-950 rounded-full h-3 mb-2 overflow-hidden border border-slate-800">
+                      <motion.div 
+                        className="bg-gradient-to-r from-rose-600 to-rose-400 h-full rounded-full"
+                        initial={{ width: 0 }}
+                        animate={{ width: `${validationProgress}%` }}
+                        transition={{ ease: "linear", duration: 0.1 }}
+                      />
+                    </div>
+                    <p className="text-slate-500 text-sm font-medium">{Math.round(validationProgress)}% completado</p>
+                  </div>
+                ) : isValidated ? (
+                  <div className="flex flex-col items-center justify-center">
+                    <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mb-6">
+                      <CheckCircle2 className="w-10 h-10 text-green-500" />
+                    </div>
+                    <h2 className="text-3xl font-bold text-white mb-4">Pago registrado correctamente</h2>
+                    <p className="text-lg text-slate-400 mb-8">
+                      Tu operación está en proceso de validación y preparación logística.
+                    </p>
+                    <p className="text-slate-500 mb-8">ID de operación: <span className="text-white font-bold">{operationId}</span></p>
+                    
+                    <div className="w-full max-w-md space-y-4 text-left">
+                      <div className="relative mb-6">
+                        <input type="file" id="receipt" className="hidden" onChange={e => setFormData({...formData, receipt: e.target.files?.[0] || null})} accept="image/*,.pdf" />
+                        <label htmlFor="receipt" className="w-full px-4 py-4 bg-slate-900 border border-slate-700 text-slate-300 rounded-xl flex items-center justify-center cursor-pointer hover:bg-slate-800 transition-colors font-bold">
+                          {formData.receipt ? formData.receipt.name : 'Subir comprobante (Imagen o PDF)'}
+                        </label>
+                      </div>
+
+                      <button onClick={handleWhatsAppSubmit} className="w-full py-4 bg-[#25D366] text-white rounded-xl font-bold text-lg hover:bg-[#128C7E] transition-colors flex items-center justify-center">
+                        Enviar comprobante por WhatsApp
+                      </button>
+                      <button onClick={handleEmailSubmit} className="w-full py-4 bg-slate-800 text-white rounded-xl font-bold text-lg hover:bg-slate-700 transition-colors flex items-center justify-center">
+                        Enviar comprobante por Email
+                      </button>
+                    </div>
+                  </div>
+                ) : null}
               </motion.div>
             )}
 
