@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { Package, Globe, TrendingUp, CheckCircle2, ShieldCheck, Loader2 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const countries = [
   "Afganistán", "Albania", "Alemania", "Andorra", "Angola", "Antigua y Barbuda", "Arabia Saudita", "Argelia", "Argentina", "Armenia", "Australia", "Austria", "Azerbaiyán", "Bahamas", "Bangladés", "Barbados", "Baréin", "Bélgica", "Belice", "Benín", "Bielorrusia", "Birmania", "Bolivia", "Bosnia y Herzegovina", "Botsuana", "Brasil", "Brunéi", "Bulgaria", "Burkina Faso", "Burundi", "Bután", "Cabo Verde", "Camboya", "Camerún", "Canadá", "Catar", "Chad", "Chile", "China", "Chipre", "Ciudad del Vaticano", "Colombia", "Comoras", "Corea del Norte", "Corea del Sur", "Costa de Marfil", "Costa Rica", "Croacia", "Cuba", "Dinamarca", "Dominica", "Ecuador", "Egipto", "El Salvador", "Emiratos Árabes Unidos", "Eritrea", "Eslovaquia", "Eslovenia", "España", "Estados Unidos", "Estonia", "Etiopía", "Filipinas", "Finlandia", "Fiyi", "Francia", "Gabón", "Gambia", "Georgia", "Ghana", "Granada", "Grecia", "Guatemala", "Guyana", "Guinea", "Guinea Ecuatorial", "Guinea-Bisáu", "Haití", "Honduras", "Hungría", "India", "Indonesia", "Irak", "Irán", "Irlanda", "Islandia", "Islas Marshall", "Islas Salomón", "Israel", "Italia", "Jamaica", "Japón", "Jordania", "Kazajistán", "Kenia", "Kirguistán", "Kiribati", "Kuwait", "Laos", "Lesoto", "Letonia", "Líbano", "Liberia", "Libia", "Liechtenstein", "Lituania", "Luxemburgo", "Macedonia del Norte", "Madagascar", "Malasia", "Malaui", "Maldivas", "Malí", "Malta", "Marruecos", "Mauricio", "Mauritania", "México", "Micronesia", "Moldavia", "Mónaco", "Mongolia", "Montenegro", "Mozambique", "Namibia", "Nauru", "Nepal", "Nicaragua", "Níger", "Nigeria", "Noruega", "Nueva Zelanda", "Omán", "Países Bajos", "Pakistán", "Palaos", "Panamá", "Papúa Nueva Guinea", "Paraguay", "Perú", "Polonia", "Portugal", "Reino Unido", "República Centroafricana", "República Checa", "República del Congo", "República Democrática del Congo", "República Dominicana", "Ruanda", "Rumania", "Rusia", "Samoa", "San Cristóbal y Nieves", "San Marino", "San Vicente y las Granadinas", "Santa Lucía", "Santo Tomé y Príncipe", "Senegal", "Serbia", "Seychelles", "Sierra Leona", "Singapur", "Siria", "Somalia", "Sri Lanka", "Suazilandia", "Sudáfrica", "Sudán", "Sudán del Sur", "Suecia", "Suiza", "Surinam", "Tailandia", "Tanzania", "Tayikistán", "Timor Oriental", "Togo", "Tonga", "Trinidad y Tobago", "Túnez", "Turkmenistán", "Turquía", "Tuvalu", "Ucrania", "Uganda", "Uruguay", "Uzbekistán", "Vanuatu", "Venezuela", "Vietnam", "Yemen", "Yibuti", "Zambia", "Zimbabue"
@@ -120,6 +120,29 @@ export default function StrategicProducts() {
   const [validationProgress, setValidationProgress] = useState(0);
   const [validationText, setValidationText] = useState('Verificando transacción...');
   const [isValidated, setIsValidated] = useState(false);
+  const [showCountryDropdown, setShowCountryDropdown] = useState(false);
+
+  useEffect(() => {
+    fetch('https://get.geojs.io/v1/ip/geo.json')
+      .then(res => res.json())
+      .then(data => {
+        if (data.country_code) {
+          try {
+            const countryName = new Intl.DisplayNames(['es'], { type: 'region' }).of(data.country_code);
+            if (countryName) {
+              setSelectedCountry(countryName);
+            }
+          } catch (e) {
+            console.error(e);
+          }
+        }
+      })
+      .catch(err => console.error('Error fetching country:', err));
+  }, []);
+
+  useEffect(() => {
+    setFormData(prev => ({ ...prev, country: selectedCountry }));
+  }, [selectedCountry]);
 
   const product = products.find(p => p.id === selectedProduct)!;
   
@@ -181,6 +204,7 @@ export default function StrategicProducts() {
 ID: ${operationId}
 Producto: ${product.name}
 Cantidad: ${quantity}
+País destino: ${selectedCountry}
 Monto: ${(totalInvestment / 2).toLocaleString('en-US', {maximumFractionDigits: 0})} USD
 
 Adjunto comprobante.`;
@@ -264,18 +288,52 @@ Por favor, confirmar recepción.`;
                   </select>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">País Destino</label>
+                <div className="relative">
+                  <label className="block text-sm font-medium text-slate-300 mb-2">País de destino de la operación</label>
                   <input 
-                    list="countries-list"
+                    type="text"
                     value={selectedCountry}
-                    onChange={(e) => setSelectedCountry(e.target.value)}
+                    onChange={(e) => {
+                      setSelectedCountry(e.target.value);
+                      setShowCountryDropdown(true);
+                    }}
+                    onFocus={() => setShowCountryDropdown(true)}
+                    onBlur={() => setTimeout(() => setShowCountryDropdown(false), 200)}
                     placeholder="Seleccioná o escribí tu país de destino"
                     className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded-xl focus:ring-2 focus:ring-rose-500 outline-none transition-all"
                   />
-                  <datalist id="countries-list">
-                    {countries.map(c => <option key={c} value={c} />)}
-                  </datalist>
+                  <AnimatePresence>
+                    {showCountryDropdown && selectedCountry && (
+                      <motion.ul
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        className="absolute z-10 w-full mt-2 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden"
+                      >
+                        {countries
+                          .filter(c => c.toLowerCase().includes(selectedCountry.toLowerCase()))
+                          .slice(0, 5)
+                          .map(c => (
+                            <li
+                              key={c}
+                              onClick={() => {
+                                setSelectedCountry(c);
+                                setShowCountryDropdown(false);
+                              }}
+                              className="px-4 py-3 text-white hover:bg-slate-700 cursor-pointer border-b border-slate-700/50 last:border-0"
+                            >
+                              {c}
+                            </li>
+                          ))}
+                        {countries.filter(c => c.toLowerCase().includes(selectedCountry.toLowerCase())).length === 0 && (
+                          <li className="px-4 py-3 text-slate-400 text-sm">
+                            Presiona continuar para usar "{selectedCountry}"
+                          </li>
+                        )}
+                      </motion.ul>
+                    )}
+                  </AnimatePresence>
+                  <p className="text-xs text-slate-400 mt-2">Operamos en más de 180 países con logística internacional adaptada a cada mercado</p>
                 </div>
 
                 <div>
@@ -306,7 +364,7 @@ Por favor, confirmar recepción.`;
 
                 <button 
                   onClick={handleNext}
-                  disabled={!selectedCountry}
+                  disabled={!selectedCountry.trim()}
                   className="w-full py-4 bg-rose-600 text-white rounded-xl font-bold text-lg hover:bg-rose-700 transition-colors shadow-lg shadow-rose-600/20 mt-8 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Continuar
@@ -326,13 +384,13 @@ Por favor, confirmar recepción.`;
                   <button onClick={handleBack} className="text-slate-400 hover:text-white mr-4">← Volver</button>
                   <h3 className="text-xl font-bold text-white flex items-center">
                     <TrendingUp className="w-5 h-5 mr-2 text-rose-500" />
-                    Proyección de Rentabilidad
+                    Proyección de Rentabilidad para {selectedCountry || 'tu país'}
                   </h3>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div className="bg-slate-950 p-6 rounded-2xl border border-slate-800">
-                    <p className="text-slate-400 mb-2 font-medium">Inversión Total Estimada</p>
+                    <p className="text-slate-400 mb-2 font-medium">Inversión Total Estimada <span className="block text-xs text-slate-500 mt-1">(Incluye costos logísticos a {selectedCountry || 'tu país'})</span></p>
                     <p className="text-4xl font-black text-white">${totalInvestment.toLocaleString('en-US', {maximumFractionDigits: 0})} <span className="text-lg text-slate-500 font-normal">USD</span></p>
                     <p className="text-sm text-slate-500 mt-3 flex items-center">
                       <Package className="w-4 h-4 mr-1" /> Costo por unidad: ${unitCost.toLocaleString('en-US', {maximumFractionDigits: 0})} USD
@@ -343,7 +401,7 @@ Por favor, confirmar recepción.`;
                     <p className="text-slate-400 mb-2 font-medium">Ingresos Proyectados</p>
                     <p className="text-4xl font-black text-white">${totalRevenue.toLocaleString('en-US', {maximumFractionDigits: 0})} <span className="text-lg text-slate-500 font-normal">USD</span></p>
                     <p className="text-sm text-slate-500 mt-3 flex items-center">
-                      <TrendingUp className="w-4 h-4 mr-1" /> Reventa est.: ${product.resale.min} - ${product.resale.max} USD/ud
+                      <TrendingUp className="w-4 h-4 mr-1" /> Precio estimado en {selectedCountry || 'tu país'}: ${product.resale.min} - ${product.resale.max} USD/ud
                     </p>
                   </div>
                 </div>
